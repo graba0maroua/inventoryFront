@@ -4,6 +4,7 @@ import { Form } from "react-router-dom"
 import { loginParams, useLoginMutation } from "../../features/auth/login"
 import { useAppDispatch } from "../hooks"
 import { AuthState, setCredentials } from "../../features/auth/auth-slice"
+import "./../../App.css"
 
 function LoginPage() {
 
