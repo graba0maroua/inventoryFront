@@ -59,7 +59,7 @@ function LoginPage() {
    
   
  }} />
-            {/* ma3reftch i handle inputs kima login */}
+           
             
           </form>
           <form action="#" className="sign-up-form">
@@ -68,38 +68,34 @@ function LoginPage() {
               <i className="fas fa-user"></i>
               <input type="text" placeholder="Full name" />
             </div>
-            <div className="input-field col-12 px-5 my-2 " >
-              <i className="fas fa-select"></i>
-              <FormSelect className="border shadow-sm " onChange={(e)=>{
-                  setRole(e.target.value)
-              }}>
-                {
-                  roles.map((role)=>{
-                    return (<option key={role} value={role} > {role}  </option>)
-                  })
-                }
-              </FormSelect>
-            </div>
-            {role != "Chef_unité" && <div className="col-12 px-5 my-2" >
-              <i className="fas fa-select"></i>
-              <FormSelect className="border shadow-sm">
-                { !isFetching && 
-                  data?.centres.map((centre)=>{
-                    return (<option key={centre.COP_ID} value={centre.COP_ID} > {centre.COP_LIB}  </option>)
-                  })
-                }
-              </FormSelect>
-            </div>}
-            {role == "Chef_unité" &&  <div className="col-12 px-5 my-2" >
-              <i className="fas fa-select"></i>
-              <FormSelect className="border shadow-sm">
-                { !isFetching && 
-                  data?.unites.map((unites)=>{
-                    return (<option key={unites.UCM_ID} value={unites.UCM_ID} > {unites.UCM_LIB}  </option>)
-                  })
-                }
-              </FormSelect>
-            </div>}
+            <div className="col-12 px-5 my-2">
+    <i className="fas fa-select"></i>
+    <FormSelect className="border shadow-sm bg-light rounded " onChange={(e) => {
+      setRole(e.target.value);
+    }}>
+      {roles.map((role) => {
+        return (<option key={role} value={role}>{role}</option>);
+      })}
+    </FormSelect>
+  </div>
+  {role !== "Chef_unité" && <div className="col-12 px-5 my-2">
+    <i className="fas fa-select"></i>
+    <FormSelect className="border shadow-sm bg-light rounded">
+      {!isFetching &&
+        data?.centres.map((centre) => {
+          return (<option key={centre.COP_ID} value={centre.COP_ID}>{centre.COP_LIB}</option>);
+        })}
+    </FormSelect>
+  </div>}
+  {role === "Chef_unité" && <div className="col-12 px-5 my-2">
+    <i className="fas fa-select"></i>
+    <FormSelect className="border shadow-sm bg-light rounded">
+      {!isFetching &&
+        data?.unites.map((unites) => {
+          return (<option key={unites.UCM_ID} value={unites.UCM_ID}>{unites.UCM_LIB}</option>);
+        })}
+    </FormSelect>
+  </div>}
             
             <div className="input-field">
               <i className="fas fa-envelope"></i>
@@ -141,7 +137,7 @@ function LoginPage() {
              connexion
             </button>
           </div>
-          <img src={imgL} className="image" alt="" /> 
+          {/* <img src={imgL} className="image" alt="" />  */}
         </div>
       </div>
       </div>
