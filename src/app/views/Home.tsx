@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './../../dashboard.css';
 import 'boxicons/css/boxicons.min.css';
+import { useAppDispatch } from '../hooks';
+import { useLogoutMutation } from '../../features/auth/login';
+import { signOut } from '../../features/auth/auth-slice';
 
 const Home = () => {
   const [status, setStatus] = useState(false);
+  const dispatch = useAppDispatch()
+  const [logout] = useLogoutMutation();
+  
 
   const toggleSidebar = () => {
     setStatus(!status);
@@ -83,12 +89,15 @@ const Home = () => {
           </li>
         </ul>
         <ul className="side-menu">
-          <li>
-            <a href="#" className="logout">
-              <i className="bx bxs-log-out-circle"></i>
-              <span className="text">Logout</span>
-            </a>
-          </li>
+        <li>
+  <a href="#" className="logout" onClick={async () => {
+    await logout("");
+    dispatch(signOut());
+  }}>
+    <i className="bx bxs-log-out-circle"></i>
+    <span className="text">Logout</span>
+  </a>
+</li>
         </ul>
       </section>
       {/* SIDEBAR

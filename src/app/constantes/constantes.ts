@@ -23,3 +23,57 @@ export const monthNumberDays =  new Map(Object.entries( {
     "Décembre":31}))
 
     export const roles = ["Chef_unité","Chef_centre","Chef_équipe"]
+   export const frFRLocalization = {
+        // Root
+     noRowsLabel: 'Pas de rangées/lignes',
+     noResultsOverlayLabel: 'Aucun résultat trouvé.',
+     errorOverlayDefaultLabel: 'Une erreur est produite.',
+     columnMenuUnsort: 'Non classé',
+     columnMenuSortAsc: 'Trier par ordre croissant',
+     columnMenuSortDesc: 'Trier par ordre décroissant',
+     columnMenuFilter: 'Filtrer',
+     columnMenuHideColumn: 'Masquer la colonne',
+     columnMenuShowColumns: 'Afficher les colonnes',
+       // Filter panel text
+       filterPanelAddFilter: 'Ajouter filtre',
+       filterPanelDeleteIconLabel: 'Supprimer',
+       filterPanelLinkOperator: 'Operateur logique',
+       filterPanelOperators: 'Operateur', 
+       filterPanelOperatorAnd: 'Et',
+       filterPanelOperatorOr: 'OU',
+       filterPanelColumns: 'Colonne',
+       filterPanelInputLabel: 'Valeur',
+       filterPanelInputPlaceholder: 'valeur filtrer',
+   
+     // Filter operators text
+     filterOperatorContains: 'contient',
+     filterOperatorEquals: 'egale',
+     filterOperatorStartsWith: 'commence avec',
+     filterOperatorEndsWith: 'termine avec',
+     filterOperatorIs: 'est',
+     filterOperatorNot: 'est pas',
+     filterOperatorAfter: 'est après',
+     filterOperatorOnOrAfter: 'est le ou avant',
+     filterOperatorBefore: 'est avant',
+     filterOperatorOnOrBefore: 'is on or before',
+     filterOperatorIsEmpty: 'est vide',
+     filterOperatorIsNotEmpty: 'est pas vide',
+     filterOperatorIsAnyOf: 'est un des',
+   
+     // Filter values text
+     filterValueAny: 'nimporte',
+     filterValueTrue: 'vrai',
+     filterValueFalse: 'faux',
+    // Column menu text
+    columnMenuLabel: 'Menu',
+    // Columns selector toolbar button text
+    toolbarColumns: 'colonne',
+    toolbarColumnsLabel: 'Choisir colonne',
+     // Columns panel text
+     columnsPanelTextFieldLabel: 'trouver colonne',
+     columnsPanelTextFieldPlaceholder: 'titre colonne',
+     columnsPanelDragIconLabel: 'Réorganiser colonne',
+     columnsPanelShowAllButton: 'Afficher tout',
+     columnsPanelHideAllButton: 'Cacher tout',
+   
+   };
