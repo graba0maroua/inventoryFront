@@ -21,3 +21,5 @@ export const monthNumberDays =  new Map(Object.entries( {
     "Octobre":31,
     "Novembre":30,
     "Décembre":31}))
+
+    export const roles = ["Chef_unité","Chef_centre","Chef_équipe"]

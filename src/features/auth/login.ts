@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { baseUrl } from '../../app/constantes/constantes';
+import { Centre } from '../../app/models/Centre';
+import { Unite } from '../../app/models/Unite';
 
 export interface Credential {
     id: number,
@@ -25,7 +27,7 @@ export class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.departement = departement;
+        this.departement = departement; //! je change ca to my user? 
     }
     name:string;
     departement:number;    
@@ -86,27 +88,27 @@ export const apiSlice = createApi({
         }),
         logout: builder.mutation<LogoutResponse,string>({
             query: () => ({
-                url: "auth/logout",
+                url: "logout",
                 method: 'POST',
                 responseHandler:(response)=>{
 
-                    
-
                     return response.text();
-                    
-
                 }
 
             }),
             
-            
-          
-           
-
         }),
+        fetchInitialRegisterData:builder.query<{centres:Centre[],unites:Unite[]},{}>({
+            query:()=>({
+                url:'getcentre',
+                method:"GET"
+                
+            })
+        })
+
 
 
     })
 
 })
-export const {useLoginMutation,useLogoutMutation,useRegisterMutation} = apiSlice;
+export const {useLoginMutation,useFetchInitialRegisterDataQuery,useLogoutMutation,useRegisterMutation} = apiSlice;
