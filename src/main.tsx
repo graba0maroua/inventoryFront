@@ -26,9 +26,9 @@ import CentrePage from './app/views/CentrePage.tsx';
             </PublicWrapper>   
           }/>
           <Route path="/home" element={
-            <PrivateWrapper>
+            <PublicWrapper>
               <HomePage />
-            </PrivateWrapper>   
+            </PublicWrapper>   
           }/>
             <Route path="/centres" element={
             <PrivateWrapper>
