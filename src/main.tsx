@@ -12,6 +12,7 @@ import HomePage from './app/views/Home.tsx'
 import PrivateWrapper from './hoc/Protected.tsx'
 import CentrePage from './app/views/CentrePage.tsx';
 import UnitePage from './app/views/UnitePage.tsx';
+import LocalitePage from './app/views/Infrastructure/LocalitePage.tsx';
 
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
@@ -39,6 +40,11 @@ import UnitePage from './app/views/UnitePage.tsx';
             <Route path="/unite" element={
             <PublicWrapper>
               <UnitePage />
+            </PublicWrapper>   
+          }/>
+            <Route path="/infrastructure/localite" element={
+            <PublicWrapper>
+              <LocalitePage />
             </PublicWrapper>   
           }/>
           </Routes> 

@@ -1,20 +1,9 @@
 .table-container {
-    height: 400px;
-    width: 50%;
-    font-family: Arial, sans-serif; /* Set the font family */
-  }
-  
-  .table {
-    border: none;
-    font-size: 14px; /* Set the font size */
-  }
-  
-  .MuiDataGrid-colHeaderTitle {
-    background-color: #044284; /* Set the background color to a blue shade */
-    color: #fff; /* Set the text color to white */
-    font-weight: bold; /* Apply bold font weight */
-  }
-  
-  .MuiDataGrid-row:hover {
-    background-color: #f1f3f5; /* Change the background color on hover */
-  }
+  width: 78%;
+  height: 100%;
+  margin-left: 260px;
+  background-color: #F9F9F9;
+
+}
+
+

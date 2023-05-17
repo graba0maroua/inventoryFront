@@ -4,12 +4,13 @@ import 'boxicons/css/boxicons.min.css';
 import { useAppDispatch } from '../hooks';
 import { useLogoutMutation } from '../../features/auth/login';
 import { signOut } from '../../features/auth/auth-slice';
+import inv from "../../assets/Asset 1.svg";
 
 const Home = () => {
-  const [status, setStatus] = useState(false);
-  const dispatch = useAppDispatch()
+  const [status, setStatus] = useState(true);
+  const [page, setPage] = useState('Dashboard');
+  const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
-  
 
   const toggleSidebar = () => {
     setStatus(!status);
@@ -30,6 +31,8 @@ const Home = () => {
         if (li) {
           li.classList.add('active');
         }
+
+        setPage(item.innerText);
       });
     });
 
@@ -47,8 +50,7 @@ const Home = () => {
       {/* SIDEBAR */}
       <section id="sidebar" className={status ? '' : 'hide'}>
         <a href="#" className="brand">
-          <i className="bx bxs-smile"></i>
-          <span className="text">Inventory Manager</span>
+          <img src={inv} alt="Logo" className="logo" onClick={toggleSidebar} />
         </a>
         <ul className="side-menu top">
           <li className="active">
@@ -58,25 +60,19 @@ const Home = () => {
             </a>
           </li>
           <li>
-            <a href="#">
-              <i className="bx bxs-shopping-bag-alt"></i>
-              <span className="text">Liste inventaire</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
+            <a href="/unite">
               <i className="bx bxs-doughnut-chart"></i>
               <span className="text">Unites</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/centres">
               <i className="bx bxs-message-dots"></i>
               <span className="text">Centres</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/infrastructure/localite">
               <i className="bx bxs-group"></i>
               <span className="text">Localites</span>
             </a>
@@ -89,46 +85,43 @@ const Home = () => {
           </li>
         </ul>
         <ul className="side-menu">
-        <li>
-  <a href="#" className="logout" onClick={async () => {
-    await logout("");
-    dispatch(signOut());
-  }}>
-    <i className="bx bxs-log-out-circle"></i>
-    <span className="text">Logout</span>
-  </a>
-</li>
+          <li>
+            <a href="#" className="logout" onClick={async () => {
+              await logout("");
+              dispatch(signOut());
+            }}>
+              <i className="bx bxs-log-out-circle"></i>
+              <span className="text">Logout</span>
+            </a>
+          </li>
         </ul>
       </section>
-      {/* SIDEBAR
-*/}{/* CONTENT */}
-  <section id="content">
-    {/* NAVBAR */}
-    <nav>
-      <i className="bx bx-menu" onClick={toggleSidebar}></i>
-      <a href="#" className="nav-link">Categories</a>
-      <form action="#">
-        <div className="form-input">
-          <input type="search" placeholder="Search..." />
-          <button type="submit" className="search-btn"><i className="bx bx-search"></i></button>
-        </div>
-      </form>
-      <input type="checkbox" id="switch-mode" hidden />
-      <label htmlFor="switch-mode" className="switch-mode"></label>
-      <a href="#" className="notification">
-        <i className="bx bxs-bell"></i>
-        <span className="num">8</span>
-      </a>
-      <a href="#" className="profile">
-        <img src="img/people.png" alt="Profile" />
-      </a>
-    </nav>
-    {/* NAVBAR */}
-    
-  </section>
-  {/* CONTENT */}
-</div>
-);
+      {/* SIDEBAR */}
+      <section id="content">
+        {/* NAVBAR */}
+        <nav>
+          <i className="bx bx-menu" onClick={toggleSidebar}></i>
+        </nav>
+        {/* NAVBAR */}
+        <main>
+          <div className="head-title">
+            <div className="left">
+              <h1>Infrastructure</h1>
+              <ul className="breadcrumb">
+                <li>
+                  <a href="#">{page}</a>
+                </li>
+                <li><i className='bx bx-chevron-right'></i></li>
+                <li>
+                  <a className="active" href="#">Table de données</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </main>
+      </section>
+    </div>
+  );
 }
 
 export default Home;

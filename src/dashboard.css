@@ -51,7 +51,7 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 280px;
+	width: 240px;
 	height: 100%;
 	background: var(--light);
 	z-index: 2000;
@@ -67,8 +67,6 @@ body {
 	width: 60px;
 }
 #sidebar .brand {
-	font-size: 24px;
-	font-weight: 700;
 	height: 56px;
 	display: flex;
 	align-items: center;
@@ -78,14 +76,21 @@ body {
 	left: 0;
 	background: var(--light);
 	z-index: 500;
-	padding-bottom: 20px;
+	padding-bottom: 17px;
+	padding-top: 17px;
+	padding-left: 40px;
 	box-sizing: content-box;
-}
-#sidebar .brand .bx {
-	min-width: 60px;
+  }
+  
+  #sidebar .brand .logo {
+	width: 80%;
+	height: 80%;
 	display: flex;
 	justify-content: center;
-}
+	align-items: center;
+	background: url("Asset1.svg") no-repeat center center;
+	background-size: contain;
+  }
 #sidebar .side-menu {
 	width: 100%;
 	/* margin-top: 48px; */
@@ -160,10 +165,10 @@ body {
 
 
 /* CONTENT */
-#content {
+#content {  /*nav bar*/
 	position: relative;
-	width: calc(100% - 280px);
-	left: 280px;
+	width: calc(100% - 240px);
+	left: 240px;  /*width of sidebar*/
 	transition: .3s ease;
 }
 #sidebar.hide ~ #content {
@@ -176,7 +181,7 @@ body {
 
 /* NAVBAR */
 #content nav {
-	height: 56px;
+	height: 75px;
 	background: var(--light);
 	padding: 0 24px;
 	display: flex;
@@ -207,7 +212,7 @@ body {
 }
 #content nav .nav-link {
 	font-size: 16px;
-	transition: .3s ease;
+	transition: .3s ease; /*categories*/
 }
 #content nav .nav-link:hover {
 	color: var(--blue);
@@ -234,7 +239,7 @@ body {
 	color: var(--dark);
 }
 #content nav form .form-input button {
-	width: 36px;
+	width: 45px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -257,7 +262,7 @@ body {
 #content nav .switch-mode {
 	display: block;
 	min-width: 50px;
-	height: 25px;
+	height: 25px;   /*not working*/
 	border-radius: 25px;
 	background: var(--grey);
 	cursor: pointer;
@@ -328,11 +333,48 @@ body {
 		background: var(--red);
 	}
 
-	#content nav form.show ~ .notification,
 	#content nav form.show ~ .profile {
 		display: none;
 	}
 
 
 }
+#content main {
+	width: 100%;
+	padding: 30px 20px;
+	padding-bottom:0;
+	font-family: var(--poppins);
+	max-height: calc(100vh - 56px);
+	overflow-y: auto;
+}
+#content main .head-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	grid-gap: 16px;
+	flex-wrap: wrap;
+}
+#content main .head-title .left h1 {
+	font-size: 30px;
+	font-weight: 600;
+	
+	color: var(--dark);
+}
+#content main .head-title .left .breadcrumb {
+	display: flex;
+	align-items: center;
+
+}
+#content main .head-title .left .breadcrumb li {
+	color: var(--dark);
+}
+#content main .head-title .left .breadcrumb li a {
+	color: var(--dark-grey);
+	pointer-events: none;
+}
+#content main .head-title .left .breadcrumb li a.active {
+	color: var(--blue);
+	pointer-events: unset;
+}
+
 

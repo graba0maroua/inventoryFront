@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { frFRLocalization } from "../constantes/constantes";
+import  Home  from '../views/Home'
 
 import "./../../Unite.css"
-
+ 
 
 interface Row {
   id: number;
@@ -32,6 +33,7 @@ interface ProgressBarProps {
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
   return (
+   
     <div className="progress">
       <div
         className="progress-bar"
@@ -47,9 +49,11 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
   );
 };
 
-export default function Unite() {
+const CentrePage = ()=>{ 
   return (
-    <div className="table-container">
+    <div>
+       <Home/>
+    <div className="table-container card me-5 p-3 shadow">
       <DataGrid
         className="table table-striped"
         rows={rows}
@@ -57,5 +61,7 @@ export default function Unite() {
         localeText={frFRLocalization}
       />
     </div>
+    </div>
   );
 }
+export default CentrePage;

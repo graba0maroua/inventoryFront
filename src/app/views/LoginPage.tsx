@@ -50,7 +50,7 @@ function LoginPage() {
                 }
               />
             </div>
-            <input type="submit" value="Connexion" className="btn solid" onClick={async () => {
+            <input type="submit" value="Connexion" className="bttn solid" onClick={async () => {
           
             
           const  {id,name,token,role}   = await login(loginp).unwrap();
@@ -110,7 +110,7 @@ function LoginPage() {
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <input type="submit" className="btn" value="s'inscrire" />
+            <input type="submit" className="bttn" value="s'inscrire" />
           </form>
         </div>
       </div>
@@ -121,7 +121,7 @@ function LoginPage() {
             <p>
             Si vous n'avez pas encore de compte, vous pouvez vous inscrire dès maintenant. 
             </p>
-            <button className="btn transparent" id="sign-up-btn" onClick={handleModeSwitch}>
+            <button className="bttn transparent" id="sign-up-btn" onClick={handleModeSwitch}>
             s'inscrire
             </button>
           </div>
@@ -133,11 +133,11 @@ function LoginPage() {
             <p>
             Si vous avez déjà créé un compte, vous pouvez vous connecter dès maintenant pour accéder à votre espace personnel.
             </p>
-            <button className="btn transparent" id="sign-in-btn" onClick={handleModeSwitch}>
+            <button className="bttn transparent" id="sign-in-btn" onClick={handleModeSwitch}>
              connexion
             </button>
           </div>
-          {/* <img src={imgL} className="image" alt="" />  */}
+          {/* <img src={inv} className="image" alt="" />  */}
         </div>
       </div>
       </div>
