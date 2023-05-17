@@ -7,6 +7,10 @@ import { Button,Dropdown, Form, Modal } from 'react-bootstrap';;
 import { faAdd, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { useAppSelector } from '../../hooks';
+// import {  MainUiState } from '../../../features/uistate/mainui';
+// import mainUiSlice from "../../../features/uistate/mainui";
+//! the marginLeft not working 
 
 interface Row {
     id: number;
@@ -33,13 +37,14 @@ interface Row {
     // Add more rows as needed
   ];
   
- 
+  // const  marginLeft = useAppSelector((state:{mainUiSlice:MainUiState})=> state.mainUiSlice.marginLeft)
   const LocalitePage = () => {
     return (
         <main>
           <Home />
       
-          <div className="table-container card me-5 p-3 shadow">
+          {/* <div className={`table-container ${marginLeft} margin_left card me-5 p-3 shadow`}> */}          {/*! bring these back when u test marginLeft*/}
+          <div className="table-container marginLeft margin_left card me-5 p-3 shadow">
             <div className="d-flex flex-row my-3">
               <div className="col-3">
                 <select className="form-select mb-3" aria-label=".form-select-lg example">
@@ -52,10 +57,10 @@ interface Row {
               <div className="col-6"></div> {/* Add this div for spacing */}
               <div className="col-3">
                 <select className="form-select mb-3" aria-label=".form-select-lg example">
-                  <option selected>Another select</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                  <option selected>Localisation</option>
+                  <option value="1">CHALET A AUDIT</option>
+                  <option value="2">COULOIR REZ DE CHAUSSE</option>
+                  <option value="3">BUREAU 17</option>
                 </select>
               </div>
             </div>

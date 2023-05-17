@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './../../dashboard.css';
 import { Button,Dropdown, Form, Modal } from 'react-bootstrap';;
 import 'boxicons/css/boxicons.min.css';
-import { useAppDispatch } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { useLogoutMutation } from '../../features/auth/login';
 import { signOut } from '../../features/auth/auth-slice';
 import inv from "../../assets/Asset 1.svg";
 import profil from "../../assets/user.png";
-
+import { setMarginLeft } from '../../features/uistate/mainui'
 
 const Home = () => {
   const [status, setStatus] = useState(true);
@@ -15,8 +15,11 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
 
+
   const toggleSidebar = () => {
     setStatus(!status);
+    const newMarginLeft = status ? "260px" : "90px";
+    dispatch(setMarginLeft(newMarginLeft));
   };
 
   useEffect(() => {
@@ -47,7 +50,6 @@ const Home = () => {
       });
     };
   }, []);
-
   return (
     <div>
       {/* SIDEBAR */}

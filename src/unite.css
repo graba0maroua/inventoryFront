@@ -1,9 +1,10 @@
 .table-container {
-  width: 78%;
+  width: 79%;
   height: 100%;
-  margin-left: 260px;
   background-color: #F9F9F9;
-
+  transition: margin-left 0.3s ease
 }
 
-
+.margin_left{
+	margin-left:260px;
+	}
