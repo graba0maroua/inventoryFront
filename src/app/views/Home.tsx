@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './../../dashboard.css';
+import { Button,Dropdown, Form, Modal } from 'react-bootstrap';;
 import 'boxicons/css/boxicons.min.css';
 import { useAppDispatch } from '../hooks';
 import { useLogoutMutation } from '../../features/auth/login';
 import { signOut } from '../../features/auth/auth-slice';
 import inv from "../../assets/Asset 1.svg";
+import profil from "../../assets/user.png";
+
 
 const Home = () => {
   const [status, setStatus] = useState(true);
@@ -101,7 +104,18 @@ const Home = () => {
         {/* NAVBAR */}
         <nav>
           <i className="bx bx-menu" onClick={toggleSidebar}></i>
-        </nav>
+        
+    
+			<form action="#">
+				<div className="form-input">
+					<input type="search" placeholder="Search..."/>
+					<button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
+				</div>
+			</form>
+		<a href="#" className="profile">
+				<img src={profil} alt='profile'/>
+			</a>
+      </nav>
         {/* NAVBAR */}
         <main>
           <div className="head-title">
@@ -117,6 +131,12 @@ const Home = () => {
                 </li>
               </ul>
             </div>
+            
+            <a href="#" className="btn-download">
+					<i className='bx bxs-download' ></i>
+					<span className="text">Download PDF</span>
+				</a>
+          
           </div>
         </main>
       </section>

@@ -18,6 +18,8 @@
     "@mui/x-data-grid": "^6.4.0",
     "@mui/x-data-grid-generator": "^6.4.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/jquery": "^3.5.16",
+    "@types/popper.js": "^1.11.0",
     "bootstrap": "^5.2.3",
     "boxicons": "^2.1.4",
     "chart.js": "^4.3.0",
