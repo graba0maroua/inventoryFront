@@ -40,8 +40,7 @@ const CentrePage = ()=>{
         {
             isFetching && (
             <div  className="d-flex flex-row justify-content-center">
-
-                <Spinner variant="secondary" />
+           <Spinner variant="secondary p-5" />
             </div>
             )
         }

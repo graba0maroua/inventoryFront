@@ -3,10 +3,12 @@ import Home from '../../views/Home';
 import '../../views/infra.css';
 import './../../../unite.css';
 import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,GridToolbarFilterButton,GridToolbarExport,
-  GridToolbarDensitySelector, } from '@mui/x-data-grid';
+  GridToolbarDensitySelector,
+  gridClasses, } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchInfrastructureLocaliteQuery } from '../../../features/infrastructure/infrastructureLocalite';
-import { ProgressBar } from 'react-bootstrap';
+import { ProgressBar, Spinner } from 'react-bootstrap';
+import { blueGrey, grey } from '@mui/material/colors';
 
 function CustomToolbar() {
   const buttonStyle = {
@@ -39,15 +41,15 @@ interface Row {
 }
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'N°Localisation', width: 150, headerClassName: 'boldHeader' },
-  { field: 'nom', headerName: 'Nom localisation', width: 250,headerClassName: 'boldHeader' },
+  { field: 'id', headerName: 'N°Localisation', width: 150, headerClassName: 'boldHeader',sortable: false, },
+  { field: 'nom', headerName: 'Nom localisation', width: 250,headerClassName: 'boldHeader',sortable: false, },
   { field: 'inventaireScannes', headerName: 'Inventaire scannés', width: 150,headerClassName: 'boldHeader' },
   { field: 'inventaireNonScannes', headerName: 'Inventaire non scannés', width: 150,headerClassName: 'boldHeader' },
   { field: 'total', headerName: 'Total', width: 100 ,headerClassName: 'boldHeader'},
   {
     field: 'pourcentage',
     headerName: 'Pourcentage',
-    width: 150,
+    width: 160,
     headerClassName: 'boldHeader',
     renderCell: (params) => (
       <div style={{ width: '100%', height: 20 }}>
@@ -62,7 +64,7 @@ const LocalitePage = () => {
   const { data, isLoading, isError } = useFetchInfrastructureLocaliteQuery();
   
   if (isLoading) {
-    return <div>Loading...</div>;
+    return  <div  className="d-flex flex-row justify-content-center"> <Spinner variant="secondary" /> </div>
   }
 
   if (isError) {
@@ -83,26 +85,7 @@ const LocalitePage = () => {
       <Home />
 
       <div className="table-container  margin_left card me-5 p-3 shadow">
-      <div className="d-flex flex-row "> {/*i took off my-3 */}
-          <div className="col-3">
-            <select className="form-select mb-3" aria-label=".form-select-lg example">
-              <option selected>Centres opérationnels</option>
-              <option value="1">DIRECTION ADMINISTRATION GENERALE</option>
-              <option value="2">D.A.S.C. CHERAGA</option>
-              <option value="3">D.A.S.C. CHLEF</option>
-            </select>
-          </div>
-          <div className="col-6"></div>
-          <div className="col-3">
-            <select className="form-select mb-3" aria-label=".form-select-lg example">
-              <option selected>Localisation</option>
-              <option value="1">CHALET A AUDIT</option>
-              <option value="2">COULOIR REZ DE CHAUSSE</option>
-              <option value="3">BUREAU 17</option>
-            </select>
-          </div>
-        </div>
-        <div style={{ height: '50vh' }}>    {/*change longeur tea la table*/}
+        <div style={{ height: '63vh' }}>    {/*change longeur tea la table*/}
           <DataGrid className="table" 
           rows={rows } 
           columns={columns}  
@@ -110,7 +93,16 @@ const LocalitePage = () => {
             toolbar: CustomToolbar,
           }}
         pageSizeOptions={[5, 10, 25,50,100]}
-        localeText={frFRLocalization} />
+        localeText={frFRLocalization}
+        getRowSpacing={(params) => ({
+          top: params.isFirstVisible ? 0 : 5,
+          bottom: params.isLastVisible ? 0 : 5,
+        })}
+        sx={{
+          [`& .${gridClasses.row}`]: {
+            bgcolor: (theme) => theme.palette.mode === 'light' ? blueGrey[(50)] : grey[50],
+          },
+        }} />
         
         </div>
       </div>
