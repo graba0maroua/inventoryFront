@@ -51,7 +51,7 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 240px;
+	width: 215px;
 	height: 100%;
 	background: var(--light);
 	z-index: 2000;
@@ -167,8 +167,8 @@ body {
 /* CONTENT */
 #content {  /*nav bar*/
 	position: relative;
-	width: calc(100% - 240px);
-	left: 240px;  /*width of sidebar*/
+	width: calc(100% - 215px);
+	left: 215px;  /*width of sidebar*/
 	transition: .3s ease;
 }
 #sidebar.hide ~ #content {

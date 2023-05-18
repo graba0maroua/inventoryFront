@@ -1,18 +1,19 @@
 .table-container {
-  width: 79%;
+  width: 81%;
+  /* width :90% */
   height: 100%;
   background-color: #F9F9F9;
   transition: margin-left 0.3s ease
 }
 
 .margin_left{
-	margin-left:260px;
+	margin-left:230px;
+	/* margin-left:90px; */
 	}
   .boldHeader {
     font-weight:900;
     font-size: 14px;
     color: #010c16;
-  
   }
   .custom-progress-bar .progress-bar {
     background-color: #F2A71B;

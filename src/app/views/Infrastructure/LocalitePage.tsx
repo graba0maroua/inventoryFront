@@ -102,7 +102,7 @@ const LocalitePage = () => {
             </select>
           </div>
         </div>
-        <div style={{ height: '50vh' }}>
+        <div style={{ height: '50vh' }}>    {/*change longeur tea la table*/}
           <DataGrid className="table" 
           rows={rows } 
           columns={columns}  
