@@ -44,7 +44,11 @@ export const monthNumberDays =  new Map(Object.entries( {
        filterPanelColumns: 'Colonne',
        filterPanelInputLabel: 'Valeur',
        filterPanelInputPlaceholder: 'valeur filtrer',
-   
+       toolbarDensity: 'Densité',
+       toolbarDensityLabel: 'Taille',
+       toolbarDensityCompact: 'petite',
+       toolbarDensityStandard: 'moyen',
+       toolbarDensityComfortable: 'Large',
      // Filter operators text
      filterOperatorContains: 'contient',
      filterOperatorEquals: 'egale',

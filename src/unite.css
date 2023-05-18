@@ -8,3 +8,12 @@
 .margin_left{
 	margin-left:260px;
 	}
+  .boldHeader {
+    font-weight:900;
+    font-size: 14px;
+    color: #010c16;
+  
+  }
+  .custom-progress-bar .progress-bar {
+    background-color: #F2A71B;
+  }
