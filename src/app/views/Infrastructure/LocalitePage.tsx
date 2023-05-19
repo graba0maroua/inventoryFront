@@ -96,6 +96,7 @@ const LocalitePage = () => {
           slots={{
             toolbar: CustomToolbar,
           }}
+        
         pageSizeOptions={[5, 10, 25,50,100]}
         localeText={frFRLocalization}
         getRowSpacing={(params) => ({

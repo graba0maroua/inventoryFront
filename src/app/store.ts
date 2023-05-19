@@ -4,6 +4,7 @@ import { apiSlice } from "./../features/auth/login";
 import { centreSlice } from "../features/centre/centre";
 import mainUiReducer from "../features/uistate/mainui";
 import {infrastructureLocaliteSlice} from "../features/infrastructure/infrastructureLocalite";
+import {planSlice} from "../features/PlanInventaire/Plan";
 
 export const store = configureStore({
   reducer: {
@@ -12,12 +13,14 @@ export const store = configureStore({
     [centreSlice.reducerPath]: centreSlice.reducer,
     mainUiSlice: mainUiReducer,
     [infrastructureLocaliteSlice.reducerPath]: infrastructureLocaliteSlice.reducer,
+    [planSlice.reducerPath]: planSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
       apiSlice.middleware,
       centreSlice.middleware,
-      infrastructureLocaliteSlice.middleware
+      infrastructureLocaliteSlice.middleware,
+      planSlice.middleware,
       
     );
   },
