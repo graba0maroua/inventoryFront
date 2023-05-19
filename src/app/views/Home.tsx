@@ -104,7 +104,7 @@ const Home = () => {
       {/* SIDEBAR */}
       <section id="content">
         {/* NAVBAR */}
-        <nav>
+        <nav className="fixed-top">
           <i className="bx bx-menu" onClick={toggleSidebar}></i>
         
     

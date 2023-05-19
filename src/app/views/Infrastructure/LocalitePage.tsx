@@ -1,6 +1,5 @@
 import React from 'react';
 import Home from '../../views/Home';
-import '../../views/infra.css';
 import './../../../unite.css';
 import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,GridToolbarFilterButton,GridToolbarExport,
   GridToolbarDensitySelector,
@@ -68,7 +67,12 @@ const LocalitePage = () => {
   }
 
   if (isError) {
-    return <div>Error occurred while fetching data.</div>;
+    return ( <div className="alert alert-danger" role="alert">
+    <h4 className="alert-heading">ERROR</h4>
+    <p>An error happened while fetching data </p>
+    <hr/>
+    <p className="mb-0">check your internet connexion and refresh the page </p>
+  </div>)
   }
 
   const rows: Row[] = data ? data.map((item) => ({
@@ -85,7 +89,7 @@ const LocalitePage = () => {
       <Home />
 
       <div className="table-container  margin_left card me-5 p-3 shadow">
-        <div style={{ height: '63vh' }}>    {/*change longeur tea la table*/}
+        <div style={{ height: '100%' }}>    {/*change longeur tea la table*/}
           <DataGrid className="table" 
           rows={rows } 
           columns={columns}  
