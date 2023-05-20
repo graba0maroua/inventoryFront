@@ -1,10 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from "../../app/services/baseQuery";
-interface Plan {
-  GROUPE_ID: number;
-  LOC_ID: string;
-  COP_ID: string;
-}
+import { Plan } from "../../app/models/Plan";
+
 
 export const planSlice = createApi({
     reducerPath: "plan",
@@ -34,4 +31,4 @@ export const planSlice = createApi({
 }),
 });
 
-export const { useFetchPlansQuery , useStorePlanMutation } = planSlice;
+export const { useFetchPlansQuery , useStorePlanMutation  } = planSlice;

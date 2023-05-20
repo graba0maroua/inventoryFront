@@ -8,6 +8,7 @@ import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchInfrastructureLocaliteQuery } from '../../../features/infrastructure/infrastructureLocalite';
 import { ProgressBar, Spinner } from 'react-bootstrap';
 import { blueGrey, grey } from '@mui/material/colors';
+import Loader from '../../../Messages/Loader';
 
 function CustomToolbar() {
   const buttonStyle = {
@@ -63,7 +64,7 @@ const LocalitePage = () => {
   const { data, isLoading, isError } = useFetchInfrastructureLocaliteQuery();
   
   if (isLoading) {
-    return  <div  className="d-flex flex-row justify-content-center"> <Spinner variant="secondary" /> </div>
+    return  <div  className="d-flex flex-row justify-content-center"> <Loader/> </div>
   }
 
   if (isError) {

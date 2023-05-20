@@ -5,6 +5,7 @@ import { centreSlice } from "../features/centre/centre";
 import mainUiReducer from "../features/uistate/mainui";
 import {infrastructureLocaliteSlice} from "../features/infrastructure/infrastructureLocalite";
 import {planSlice} from "../features/PlanInventaire/Plan";
+import planUiSlice from "../features/PlanInventaire/Plan-ui";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
     [centreSlice.reducerPath]: centreSlice.reducer,
     mainUiSlice: mainUiReducer,
+    planUiSlice: planUiSlice,
     [infrastructureLocaliteSlice.reducerPath]: infrastructureLocaliteSlice.reducer,
     [planSlice.reducerPath]: planSlice.reducer,
   },
@@ -21,7 +23,6 @@ export const store = configureStore({
       centreSlice.middleware,
       infrastructureLocaliteSlice.middleware,
       planSlice.middleware,
-      
     );
   },
 });
