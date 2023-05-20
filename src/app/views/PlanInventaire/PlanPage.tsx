@@ -14,32 +14,40 @@ interface Row {
     COP_ID: string;
   }
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'Groupe ID', width: 100 },
+    { field: 'id', headerName: 'Groupe ID', width: 100 ,  },
     { field: 'LOC_ID', headerName: 'Localité ID', width: 150 },
     { field: 'COP_ID', headerName: 'Centre opérationel ID', width: 150 },
     {
         field: 'actions',
         headerName: 'Actions', 
-        width: 700,
+        width: 700,headerClassName: 'Action-buttons',
         renderCell: (params) => (
             <>
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="button"
               onClick={() => handleEdit(params.row.id)}
               style={{ marginRight: '15px' }}
             >
               Edit
             </button>
             <button
-              className="btn btn-outline-danger"
+              type="button"
+              className="button"
+              onClick={() => handleEdit(params.row.id)}
+              style={{ marginRight: '15px' }}
+            >
+              ADD
+            </button>
+            <button
+              className="button-52"
               onClick={() => handleDelete(params.row.id)}
               style={{ marginRight: '15px' }}
             >
               Delete
             </button>
             <button
-              className="btn btn-outline-success"
+              className="button-56"
               onClick={() => handleViewDetails(params.row.id)}
             >
               View Details
@@ -91,15 +99,7 @@ const PlanPage = () => {
                 columns={columns}
                 pageSizeOptions={[5, 10, 25, 50, 100]}
                 localeText={frFRLocalization}
-                getRowSpacing={(params) => ({
-                    top: params.isFirstVisible ? 0 : 5,
-                    bottom: params.isLastVisible ? 0 : 5,
-                  })}
-                  sx={{
-                    [`& .${gridClasses.row}`]: {
-                      bgcolor:  blueGrey[(50)] 
-                    },
-                  }} />
+             />
               
             </div>
           </div>

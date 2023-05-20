@@ -10,28 +10,23 @@ export const planSlice = createApi({
     reducerPath: "plan",
     baseQuery:baseQueryWithReauth, 
   endpoints: (builder) => ({
+
+
     fetchPlans: builder.query<Plan[], void>({
       query: () => ({
         url:"/inventory-plan", 
         method:"GET"
     })}),
+ 
+
+
+  storePlan: builder.mutation<Plan, Partial<Plan>>({
+    query: (plan) => ({
+      url: "/inventory-plan",
+      method: "POST",
+      body: plan,
+    }),
   }),
-});
-export const addplanSlice = createApi({
-  reducerPath: "plan",
-  baseQuery:baseQueryWithReauth, 
-endpoints: (builder) => ({
-
- fetchPlans: builder.query<Plan[], void>({
-    query: () => ({
-      url:"/inventory-plan", 
-      method:"GET"
-  })}),
-
-  storePlan: builder.mutation<,>({
-
-  })
-
 
 
 
@@ -39,4 +34,4 @@ endpoints: (builder) => ({
 }),
 });
 
-export const { useFetchPlansQuery } = planSlice;
+export const { useFetchPlansQuery , useStorePlanMutation } = planSlice;
