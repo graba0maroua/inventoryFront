@@ -85,11 +85,12 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                     Annuler
                   </Button>
                   <Button
-                    variant="primary"
+                    className='bg-secondaire'
                     onClick={async () => {
                       const plan = new Plan(groupId, locId, copId);
                       try {
                         const payload = await storePlan(plan);
+                        console.log(payload);
                         dispatch(setCreated());
                         refetch();
                       } catch (error) {
@@ -104,7 +105,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       setCopId('');
                     }}
                   >
-                    Add
+                    Valider
                   </Button>
                 </Modal.Footer>
               </div>

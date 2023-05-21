@@ -21,3 +21,9 @@
   /* ::-webkit-scrollbar-thumb {
     background: #50A060;
 } */
+.bg-secondaire{
+  color: #072645 !important;
+  background:  #d8e9fb!important;
+  border-color: #d8e9fb!important ;
+
+}

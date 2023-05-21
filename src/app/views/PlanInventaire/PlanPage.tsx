@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from '../../views/Home';
+import { Button, Form, Modal } from 'react-bootstrap';
 import './../../../unite.css';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
@@ -7,6 +8,8 @@ import { useFetchPlansQuery } from '../../../features/PlanInventaire/Plan';
 import AddPlanModal from "../../views/PlanInventaire/AddPlan";
 import { useAppDispatch } from '../../hooks';
 import { show } from '../../../features/PlanInventaire/Plan-ui';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd } from '@fortawesome/free-solid-svg-icons';
 
 
 interface Row {
@@ -16,9 +19,9 @@ interface Row {
 }
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'Groupe ID', width: 100 },
-  { field: 'LOC_ID', headerName: 'Localité ID', width: 150 },
-  { field: 'COP_ID', headerName: 'Centre opérationel ID', width: 150 },
+  { field: 'id', headerName: 'ID Equipe', width: 100 },
+  { field: 'LOC_ID', headerName: 'ID Localisation', width: 150 },
+  { field: 'COP_ID', headerName: 'ID Centre opérationel ID', width: 150 },
   {
     field: 'actions',
     headerName: 'Actions',
@@ -66,14 +69,20 @@ const PlanPage = () => {
     <main>
       <Home />
       <div className="table-container margin_left card me-2 p-2 shadow">
-      {/* <button
-  type="button"
-  className="button"
-  onClick={() =>{dispatch(show()); }}
-  style={{ marginRight: '15px' }}
->
-  ADD
-</button> */}
+      <div className='d-flex flex-row my-3'>
+        
+
+        <div className='col-9 me-4 '>
+          <Form.Control type="text" placeholder="Equipe , localisation ..." />
+
+        </div>
+        <div>
+        
+          <button className='btn bg-secondaire ' onClick={() =>{dispatch(show()); }}> <FontAwesomeIcon icon={faAdd} /> Ajouter un accès</button>
+
+        </div>
+        
+        </div>
         <div style={{ height: '100%' }}>
           <DataGrid
             rows={rows}
