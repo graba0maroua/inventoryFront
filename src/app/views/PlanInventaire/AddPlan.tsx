@@ -3,7 +3,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { PlanUiState, initialize, setCreated, setError } from '../../../features/PlanInventaire/Plan-ui';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faBarcode } from '@fortawesome/free-solid-svg-icons';
 import { useStorePlanMutation } from '../../../features/PlanInventaire/Plan';
 import { Plan } from "../../../app/models/Plan";
 import SuccessMessage from '../../../Messages/SuccessMessage';
@@ -35,8 +35,8 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
         centered
       >
         <Modal.Header className="bg-secondaire" closeButton>
-          <Modal.Title>
-            <FontAwesomeIcon icon={faCalendar} /> Add a New Plan
+          <Modal.Title >
+            <FontAwesomeIcon icon={faBarcode} className='me-2' /> Add a New Plan
           </Modal.Title>
         </Modal.Header>
         {!uiState.isError ? (
@@ -46,7 +46,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                 <Modal.Body>
                   <Form>
                     <Form.Group>
-                      <Form.Label>Group ID</Form.Label>
+                      <Form.Label>ID Equipe</Form.Label>
                       <Form.Control
                         type="number"
                         placeholder="Enter group ID"
@@ -57,7 +57,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>Location ID</Form.Label>
+                      <Form.Label>ID Localisation</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="Enter location ID"
@@ -68,7 +68,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>COP ID</Form.Label>
+                      <Form.Label>ID Centre opérationel COP</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="Enter company ID"

@@ -43,14 +43,16 @@ interface Row {
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'N°Localisation', width: 150, headerClassName: 'boldHeader',sortable: false, },
   { field: 'nom', headerName: 'Nom localisation', width: 250,headerClassName: 'boldHeader',sortable: false, },
-  { field: 'inventaireScannes', headerName: 'Inventaire scannés', width: 150,headerClassName: 'boldHeader' },
-  { field: 'inventaireNonScannes', headerName: 'Inventaire non scannés', width: 150,headerClassName: 'boldHeader' },
-  { field: 'total', headerName: 'Total', width: 100 ,headerClassName: 'boldHeader'},
+  { field: 'inventaireScannes', headerName: 'Inventaire scannés', width: 150,headerClassName: 'boldHeader',align: 'center' },
+  { field: 'inventaireNonScannes', headerName: 'Inventaire non scannés', width: 150,headerClassName: 'boldHeader' ,align: 'center'},
+  { field: 'total', headerName: 'Total', width: 100 ,headerClassName: 'boldHeader', headerAlign: 'center',align: 'center'},
   {
     field: 'pourcentage',
     headerName: 'Pourcentage',
     width: 160,
     headerClassName: 'boldHeader',
+    headerAlign: 'center',
+    align: 'center',
     renderCell: (params) => (
       <div style={{ width: '100%', height: 20 }}>
         <ProgressBar now={params.value} label={`${params.value}%`}
