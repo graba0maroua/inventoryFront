@@ -27,6 +27,7 @@
   border-color: #d8e9fb!important ;
 
 }
+/***************************Liste inventaire etiquettes style***************************/
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -50,4 +51,60 @@
   }
   .status-badge .icon {
     margin-right: 4px;
+  }
+/************************ PlanPage buttons style ******************************/
+  .action-button {
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid #333333;
+    color: #333333;
+    background-color: #f0f0f0;
+    /* transition: background-color 0.3s ease, color 0.3s ease; */
+  }
+  
+  /* .action-button:hover {
+    background-color: #e5e5e5;
+  } */
+  
+  .edit-button {
+    border-color: #0f3e6c;
+    color: #FFF;
+    background-color: #0f3e6c;
+  }
+  
+  .edit-button:hover {
+    border-color: #072645;
+    color: #072645;
+    background-color: #CFE8FF
+  }
+  
+  .delete-button {
+    border-color: #DB504A;
+    color: #FFF;
+    background-color: #d55753;
+  }
+
+  
+  .delete-button:hover {
+    border-color: #DB504A;
+    color: #dc3545;
+    background-color: #ffe6e6;
+  }
+  
+  .details-button {
+    border-color: #ebc05c;
+    color: #FFF;
+    background-color: #ebc05c;
+  }
+/*   
+  .details-button {
+    border-color: #f1cb73;
+    color: #f1cb73;
+    background-color: #fff3e6;
+  } */
+  
+  .details-button:hover {
+    border-color: #f1cb73;
+    color: #f1cb73;
+    background-color: #fff3e6;
   }
