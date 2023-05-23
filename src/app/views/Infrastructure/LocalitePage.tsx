@@ -40,7 +40,7 @@ interface Row {
   pourcentage: string;
 }
 
-const columns: GridColDef[] = [
+const columns: GridColDef[] = [ 
   { field: 'id', headerName: 'N°Localisation', width: 150, headerClassName: 'boldHeader',sortable: false, },
   { field: 'nom', headerName: 'Nom localisation', width: 250,headerClassName: 'boldHeader',sortable: false, },
   { field: 'inventaireScannes', headerName: 'Inventaire scannés', width: 150,headerClassName: 'boldHeader',align: 'center' },

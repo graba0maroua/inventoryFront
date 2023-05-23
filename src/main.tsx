@@ -11,8 +11,9 @@ import LoginPage from './app/views/LoginPage.tsx'
 import HomePage from './app/views/Home.tsx'
 import PrivateWrapper from './hoc/Protected.tsx'
 import CentrePage from './app/views/CentrePage.tsx';
-import LocalitePage from './app/views/Infrastructure/LocalitePage.tsx';
-import PlanPage from './app/views/PlanInventaire/PlanPage.tsx';
+import LocalitePage from './app/views/Infrastructure/LocalitePage';
+import PlanPage from './app/views/PlanInventaire/PlanPage';
+import Chefcentre from './app/views/Listeinventaire/Chefcentre';
 
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
@@ -28,25 +29,30 @@ import PlanPage from './app/views/PlanInventaire/PlanPage.tsx';
             </PublicWrapper>   
           }/>
           <Route path="/home" element={
-            <PublicWrapper>
+            <PrivateWrapper>
               <HomePage />
-            </PublicWrapper>   
+            </PrivateWrapper>   
           }/>
             <Route path="/centres" element={
-            <PublicWrapper>
+            <PrivateWrapper>
               <CentrePage />
-            </PublicWrapper>   
+            </PrivateWrapper>   
           }/>
          
             <Route path="/infrastructure/localite" element={
-            <PublicWrapper>
+            <PrivateWrapper>
               <LocalitePage />
-            </PublicWrapper>   
+            </PrivateWrapper>   
           }/>
             <Route path="/plan" element={
-            <PublicWrapper>
+            <PrivateWrapper>
               <PlanPage />
-            </PublicWrapper>   
+            </PrivateWrapper>   
+          }/>
+            <Route path="/inventoryList-centre" element={
+            <PrivateWrapper>
+              < Chefcentre/>
+            </PrivateWrapper>   
           }/>
           </Routes> 
           </BrowserRouter>

@@ -66,19 +66,25 @@ const Home = () => {
           </li>
           <li>
             <a href="/unite">
-              <i className="bx bxs-doughnut-chart"></i>
+              <i className="bx bxs-barcode"></i>
+              <span className="text">Liste d'inventaire</span>
+            </a>
+          </li>
+          <li>
+            <a href="/unite">
+              <i className="bx bxs-business"></i>
               <span className="text">Unites</span>
             </a>
           </li>
           <li>
             <a href="/centres">
-              <i className="bx bxs-message-dots"></i>
+              <i className="bx bxs-buildings"></i>
               <span className="text">Centres</span>
             </a>
           </li>
           <li>
             <a href="/infrastructure/localite">
-              <i className="bx bxs-group"></i>
+              <i className="bx bxs-building"></i>
               <span className="text">Localites</span>
             </a>
           </li>
