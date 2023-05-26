@@ -11,7 +11,7 @@ import { Plan } from "../../../app/models/Plan";
 import { useAppDispatch } from '../../hooks';
 import { show, showEdit } from '../../../features/PlanInventaire/Plan-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faEdit, faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { blueGrey, grey } from '@mui/material/colors';
 
 
@@ -30,30 +30,41 @@ const PlanPage = () => {
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID Equipe', width: 200, headerAlign: 'center', align: 'center'},
     { field: 'LOC_ID', headerName: 'ID Localisation', width: 200 , headerAlign: 'center',align: 'center'},
-    { field: 'COP_ID', headerName: 'ID Centre opérationel ID', width: 200 , headerAlign: 'center',align: 'center'},
+    { field: 'COP_ID', headerName: 'ID Centre opérationel ID', width: 240 , headerAlign: 'center',align: 'center'},
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 500,
+      width: 350,
       headerClassName: 'Action-buttons',
       headerAlign: 'center',
       renderCell: (params) => (
         <>
-          <Button variant="secondary" size="sm" onClick={() => handleEditPlan(params.row)}>
-            <FontAwesomeIcon icon={faEdit} /> Modifer
-          </Button>
-          <Button variant="danger" size="sm">
-            Supprimer
-          </Button>
-          <Button variant="warning" size="sm">
-            Détails
-          </Button>
-        </>
+        <Button className="action-button edit-button" size="sm" onClick={() => handleEditPlan(params.row)}>
+          <FontAwesomeIcon icon={faEdit} className="me-2" />
+          Modifier
+        </Button>
+        <Button className="action-button delete-button" size="sm" onClick={() => handleDeletePlan(params.row)}>
+          <FontAwesomeIcon icon={faTrash} className="me-2" />
+          Supprimer
+        </Button>
+        <Button className="action-button details-button" size="sm" onClick={() => handlePlanDetails(params.row)}>
+          <FontAwesomeIcon icon={faInfoCircle} className="me-2" />
+          Détails
+        </Button>
+      </>
       ),
     },
   ];
 
   const handleEditPlan = (plan) => {
+    setSelectedPlan(plan);
+    dispatch(showEdit());
+  };
+  const handleDeletePlan = (plan) => {
+    setSelectedPlan(plan);
+    dispatch(showEdit());
+  };
+  const handlePlanDetails = (plan) => {
     setSelectedPlan(plan);
     dispatch(showEdit());
   };
