@@ -43,13 +43,13 @@ const PlanPage = () => {
           <FontAwesomeIcon icon={faEdit} className="me-2" />
           Modifier
         </Button>
-        <Button className="action-button delete-button" size="sm" onClick={() => handleDeletePlan(params.row)}>
-          <FontAwesomeIcon icon={faTrash} className="me-2" />
-          Supprimer
-        </Button>
         <Button className="action-button details-button" size="sm" onClick={() => handlePlanDetails(params.row)}>
           <FontAwesomeIcon icon={faInfoCircle} className="me-2" />
           Détails
+        </Button>
+        <Button className="action-button delete-button" size="sm" onClick={() => handleDeletePlan(params.row)}>
+          <FontAwesomeIcon icon={faTrash} className="me-2" />
+          Supprimer
         </Button>
       </>
       ),

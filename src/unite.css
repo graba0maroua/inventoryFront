@@ -59,7 +59,7 @@
     border: 2px solid #333333;
     color: #333333;
     background-color: #f0f0f0;
-    /* transition: background-color 0.3s ease, color 0.3s ease; */
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   /* .action-button:hover {
@@ -92,9 +92,9 @@
   }
   
   .details-button {
-    border-color: #ebc05c;
+    border-color: #f0c768;
     color: #FFF;
-    background-color: #ebc05c;
+    background-color: #f0c768;
   }
 /*   
   .details-button {

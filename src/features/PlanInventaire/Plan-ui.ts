@@ -28,7 +28,7 @@ const initialState: PlanUiState = {
 };
 
 const planUiSlice = createSlice({
-  name: 'planUi',
+  name: 'plan',
   initialState,
   reducers: {
     show(state) {

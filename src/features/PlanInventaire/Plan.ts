@@ -29,7 +29,7 @@ export const planSlice = createApi({
   updatePlan: builder.mutation<StandarResponse, Plan>({
     query: (plan) => ({
         url: `/inventory-plan/${plan.GROUPE_ID}`,
-        method: 'POST',
+        method: 'PUT',
         body: {
           GROUPE_ID: plan.GROUPE_ID,
           LOC_ID: plan.LOC_ID,

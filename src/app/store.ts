@@ -7,6 +7,7 @@ import {infrastructureLocaliteSlice} from "../features/infrastructure/infrastruc
 import {planSlice} from "../features/PlanInventaire/Plan";
 import {ChefCentreSlice} from "../features/ListeInventaire/ChefCentre";
 import planUiSlice from "../features/PlanInventaire/Plan-ui";
+import {AdminSlice} from "../features/Admin/Admin";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     [infrastructureLocaliteSlice.reducerPath]: infrastructureLocaliteSlice.reducer,
     [planSlice.reducerPath]: planSlice.reducer,
     [ChefCentreSlice.reducerPath]: ChefCentreSlice.reducer,
+    [AdminSlice.reducerPath]: AdminSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
@@ -26,6 +28,8 @@ export const store = configureStore({
       infrastructureLocaliteSlice.middleware,
       planSlice.middleware,
       ChefCentreSlice.middleware,
+      AdminSlice.middleware,
+
 
     );
   },
