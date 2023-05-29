@@ -13,6 +13,7 @@ import { show, showEdit } from '../../../features/PlanInventaire/Plan-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faEdit, faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { blueGrey, grey } from '@mui/material/colors';
+import Loader from '../../../Messages/Loader';
 
 
 
@@ -74,7 +75,7 @@ const PlanPage = () => {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader></Loader>
   }
 
   if (isError) {
@@ -107,12 +108,17 @@ const PlanPage = () => {
           <DataGrid
             rows={rows}
             columns={columns}
-            pageSizeOptions={[5, 10, 25, 50, 100]}
-            localeText={frFRLocalization}
-            getRowSpacing={(params) => ({
-              top: params.isFirstVisible ? 0 : 5,
-              bottom: params.isLastVisible ? 0 : 5,
-            })}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 4 },
+              },
+            }}
+          pageSizeOptions={[4, 10, 25,50,100]}
+          localeText={frFRLocalization}
+          getRowSpacing={(params) => ({
+            top: params.isFirstVisible ? 0 : 4,
+            bottom: params.isLastVisible ? 0 : 4,
+          })}
             sx={{
               [`& .${gridClasses.row}`]: {
                 bgcolor: (theme) => theme.palette.mode === 'light' ? blueGrey[(50)] : grey[50],

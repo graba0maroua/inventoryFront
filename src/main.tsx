@@ -14,6 +14,7 @@ import CentrePage from './app/views/CentrePage.tsx';
 import LocalitePage from './app/views/Infrastructure/LocalitePage';
 import PlanPage from './app/views/PlanInventaire/PlanPage';
 import Chefcentre from './app/views/Listeinventaire/Chefcentre';
+import AdminPage from './app/views/Admin/AdminPage';
 
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
@@ -52,6 +53,11 @@ import Chefcentre from './app/views/Listeinventaire/Chefcentre';
             <Route path="/inventoryList-centre" element={
             <PrivateWrapper>
               < Chefcentre/>
+            </PrivateWrapper>   
+          }/>
+            <Route path="/admin" element={
+            <PrivateWrapper>
+              < AdminPage/>
             </PrivateWrapper>   
           }/>
           </Routes> 

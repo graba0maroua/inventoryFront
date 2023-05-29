@@ -108,3 +108,144 @@
     color: #f1cb73;
     background-color: #fff3e6;
   }
+  /************************ Admin Page style ******************************/
+  .AdminTable{
+    width: 97%;
+    margin-left: 20px;
+  }
+  .accept-button {
+    background-color: #68A357;
+    color: #ffffff;
+
+  }
+  
+  .refuse-button {
+    background-color: #DB504A;
+    color: #ffffff;
+   
+  }
+  
+  
+  .logout-button {
+    color: #dc3545;
+  }
+  .logout-button:hover {
+    background-color: #da3e4e;
+    color: #ffffff;
+  }
+  nav form {
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: 0px;
+    padding-right: 0px;
+  }
+  
+  nav form .form-input {
+    display: flex;
+    align-items: center;
+    height: 36px;
+  }
+  
+  nav form .form-input input {
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--grey);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+  }
+  
+  nav form .form-input button {
+    width: 45px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--blue);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+  }
+  .action-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  filter: brightness(90%);
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.details-button {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}.actions-container {
+  display: flex;
+  gap: 10px;
+}
+
+.accept-button {
+  background-color: #37C24B;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+justify-content: center;
+  font-weight: 'bold';
+  font-family:'Lato', sans-serif ;
+}
+
+.refuse-button {
+  background-color: #cd392f;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+justify-content: center;
+  font-weight: 'bold';
+  font-family:'Lato', sans-serif ;
+}
+
+.accept-button .icon,
+.refuse-button .icon {
+  margin-right: 4px;
+}
+
+.accept-button:hover,
+.refuse-button:hover {
+  filter: brightness(90%);
+}
+
+/*  */

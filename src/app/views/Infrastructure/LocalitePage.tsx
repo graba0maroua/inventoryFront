@@ -31,14 +31,6 @@ function CustomToolbar() {
     </GridToolbarContainer>
   );
 }
-interface Row {
-  id:string;
-  nom: string;
-  inventaireScannes: number;
-  inventaireNonScannes: number;
-  total: number;
-  pourcentage: string;
-}
 
 const columns: GridColDef[] = [ 
   { field: 'id', headerName: 'N°Localisation', width: 150, headerClassName: 'boldHeader',sortable: false, },
@@ -78,7 +70,7 @@ const LocalitePage = () => {
   </div>)
   }
 
-  const rows: Row[] = data ? data.map((item) => ({
+  const rows = data ? data.map((item) => ({
     id: item.locality_id.toString(),
     nom: item.locality_name,
     inventaireScannes: item.scanned_count,
@@ -99,12 +91,16 @@ const LocalitePage = () => {
           slots={{
             toolbar: CustomToolbar,
           }}
-        
-        pageSizeOptions={[5, 10, 25,50,100]}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 4 },
+            },
+          }}
+        pageSizeOptions={[4, 10, 25,50,100]}
         localeText={frFRLocalization}
         getRowSpacing={(params) => ({
-          top: params.isFirstVisible ? 0 : 5,
-          bottom: params.isLastVisible ? 0 : 5,
+          top: params.isFirstVisible ? 0 : 4,
+          bottom: params.isLastVisible ? 0 : 4,
         })}
         sx={{
           [`& .${gridClasses.row}`]: {
