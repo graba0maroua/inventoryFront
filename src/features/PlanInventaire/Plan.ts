@@ -22,7 +22,11 @@ export const planSlice = createApi({
     query: (plan) => ({
       url: "/inventory-plan",
       method: "POST",
-      body: plan,
+      body: {
+        GROUPE_ID:plan.GROUPE_ID,
+        LOC_ID:plan.LOC_ID,
+        COP_ID:plan.COP_ID
+      },
     }),
   }),
 
@@ -38,9 +42,15 @@ export const planSlice = createApi({
     }),
 
 }),
+  deletePlan : builder.mutation<StandarResponse,Plan>({
+      query:({COP_ID,GROUPE_ID,LOC_ID}) => ({
+        url:`/inventory-plan/${GROUPE_ID}/${LOC_ID}/${COP_ID}`,
+        method:'DELETE'
+      })
+  })
 
 
 }),
 });
 
-export const { useFetchPlansQuery , useStorePlanMutation ,useUpdatePlanMutation } = planSlice;
+export const { useFetchPlansQuery , useStorePlanMutation ,useUpdatePlanMutation, useDeletePlanMutation } = planSlice;

@@ -10,6 +10,8 @@ import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import SideBar from '../../components/SideBarComponent';
+import WelcomeComponent from '../../components/WelComeComponent';
 
 function CustomToolbar() {
     const buttonStyle = {
@@ -45,7 +47,8 @@ function CustomToolbar() {
   }
   
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'N°Centre', width: 80, headerClassName: 'boldHeader', sortable: false },
+    { field: 'id', headerName: 'ID', width: 80, headerClassName: 'boldHeader', sortable: false },
+    { field: 'copid', headerName: 'N°Centre', width: 80, headerClassName: 'boldHeader', sortable: false },
     { field: 'code_bar', headerName: 'Code Bar', width: 150, headerClassName: 'boldHeader', sortable: false ,headerAlign: 'center'},
     { field: 'AST_LIB', headerName: 'Asset Libellé', width: 200, headerClassName: 'boldHeader', sortable: false ,},
     { field: 'AST_VALBASE', headerName: 'Valeur', width: 90, headerClassName: 'boldHeader', align: 'center',headerAlign: 'center' },
@@ -98,25 +101,33 @@ function CustomToolbar() {
         <h4 className="alert-heading">ERROR</h4>
         <p>An error happened while fetching data</p>
         <hr />
-        <p className="mb-0">Check your internet connection and refresh the page</p>
+        <p className="mb-0">error</p>
       </div>
     );
   }
   const rows: Row[] = data
-    ? data.map((item) => ({
-    id: item.COP_ID,
-    code_bar: item.code_bar,
-    AST_LIB: item.AST_LIB,
-    AST_VALBASE: item.AST_VALBASE,
-    AST_DTE_ACQ: item.AST_DTE_ACQ,
-    LOC_ID_INIT: item.LOC_ID_INIT,
-    LOC_LIB_INIT: item.LOC_LIB_INIT,
-    status: item.status,
-  })) : [];
+  ? data.map((item, index) => ({
+      id: (index + 1).toString(), // Assign a unique id based on the index
+      copid:  item.COP_ID, // Assign a unique id based on the index
+      code_bar: item.code_bar,
+      AST_LIB: item.AST_LIB,
+      AST_VALBASE: item.AST_VALBASE,
+      AST_DTE_ACQ: item.AST_DTE_ACQ.toString(),
+      LOC_ID_INIT: item.LOC_ID_INIT,
+      LOC_LIB_INIT: item.LOC_LIB_INIT,
+      status: item.status,
+    }))
+  : [];
 
  return (
-    <main>
-      <Home />
+  <main>
+  <SideBar  active='Localités' />
+   <WelcomeComponent 
+   page="Liste d'inventaire"
+   title="Liste d'inventaire"
+   subItem={'Table de données'} 
+   downloadLink='#'
+   isDownloadable={false} />
       <div className="table-container margin_left card me-5 p-3 shadow">
         <div style={{ height: '100%' }}>
           <DataGrid
@@ -126,18 +137,22 @@ function CustomToolbar() {
             slots={{
                 toolbar: CustomToolbar,
               }}
-            pageSizeOptions={[5, 10, 25, 50]}
+              initialState={{
+                pagination: {
+                  paginationModel: { page: 0, pageSize: (5) },
+                },
+              }}
+            pageSizeOptions={[(5), 10, 25,50,100]}
             localeText={frFRLocalization}
             getRowSpacing={(params) => ({
-              top: params.isFirstVisible ? 0 : 5,
-              bottom: params.isLastVisible ? 0 : 5,
+              top: params.isFirstVisible ? 0 : (5),
+              bottom: params.isLastVisible ? 0 : (5),
             })}
             sx={{
               [`& .${gridClasses.row}`]: {
-                bgcolor: (theme) => theme.palette.mode === 'light' ? blueGrey[50] : grey[50],
+                bgcolor: (theme) => theme.palette.mode === 'light' ? blueGrey[(50)] : grey[50],
               },
-            }}
-          />
+            }} />
         </div>
       </div>
     </main>

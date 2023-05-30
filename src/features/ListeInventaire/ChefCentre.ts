@@ -2,15 +2,16 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithReauth } from "../../app/services/baseQuery";
 
 interface ChefCentre {
-    COP_ID: any;
-    code_bar: any;
-    AST_LIB: any;
-    AST_VALBASE: any;
-    AST_DTE_ACQ: any;
-    LOC_ID_INIT: any;
-    LOC_LIB_INIT: any;
-    status: any;
+    COP_ID: string;
+    code_bar: string;
+    AST_LIB: string;
+    AST_VALBASE: number;
+    AST_DTE_ACQ: Date;
+    LOC_ID_INIT: string;
+    LOC_LIB_INIT: string;
+    status: string;
   }
+  
 
   export const ChefCentreSlice = createApi({
     reducerPath: "inventoryList-centre",
@@ -18,7 +19,7 @@ interface ChefCentre {
     endpoints: (builder) => ({
       fetchChefCentre: builder.query<ChefCentre[], void>({
         query:()=>({
-          url:"/inventoryList", 
+          url:"/listCentre", 
           method:"GET"
       })
       }),

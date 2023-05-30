@@ -4,7 +4,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import './../../../unite.css';
 import { DataGrid, GridColDef, gridClasses } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
-import { useFetchPlansQuery } from '../../../features/PlanInventaire/Plan';
+import { useDeletePlanMutation, useFetchPlansQuery } from '../../../features/PlanInventaire/Plan';
 import AddPlanModal from "../../views/PlanInventaire/AddPlan";
 import EditPlanModal from "../../views/PlanInventaire/EditPlan";
 import { Plan } from "../../../app/models/Plan";
@@ -26,7 +26,8 @@ interface Row {
 const PlanPage = () => {
   const { data, isLoading, isError, refetch } = useFetchPlansQuery();
   const dispatch = useAppDispatch();
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState<Plan|null>(null);
+  const   [deletePlan] = useDeletePlanMutation();
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID Equipe', width: 200, headerAlign: 'center', align: 'center'},
@@ -35,20 +36,17 @@ const PlanPage = () => {
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 350,
+      width: 150,
       headerClassName: 'Action-buttons',
       headerAlign: 'center',
       renderCell: (params) => (
         <>
-        <Button className="action-button edit-button" size="sm" onClick={() => handleEditPlan(params.row)}>
-          <FontAwesomeIcon icon={faEdit} className="me-2" />
-          Modifier
-        </Button>
-        <Button className="action-button details-button" size="sm" onClick={() => handlePlanDetails(params.row)}>
-          <FontAwesomeIcon icon={faInfoCircle} className="me-2" />
-          Détails
-        </Button>
-        <Button className="action-button delete-button" size="sm" onClick={() => handleDeletePlan(params.row)}>
+     
+        <Button className="action-button delete-button" size="sm" onClick={(e) => handleDeletePlan({
+          GROUPE_ID:params.row.id,
+          LOC_ID:params.row.LOC_ID,
+          COP_ID:params.row.COP_ID
+        })}>
           <FontAwesomeIcon icon={faTrash} className="me-2" />
           Supprimer
         </Button>
@@ -57,19 +55,10 @@ const PlanPage = () => {
     },
   ];
 
-  const handleEditPlan = (plan) => {
-    setSelectedPlan(plan);
-    dispatch(showEdit());
+  const  handleDeletePlan =async (plan:Plan) => {
+    const result  = await deletePlan(plan).unwrap();
+    refetch();
   };
-  const handleDeletePlan = (plan) => {
-    setSelectedPlan(plan);
-    dispatch(showEdit());
-  };
-  const handlePlanDetails = (plan) => {
-    setSelectedPlan(plan);
-    dispatch(showEdit());
-  };
-
   function CustomRefetch() {
     refetch();
   }
@@ -129,9 +118,6 @@ const PlanPage = () => {
         </div>
       </div>
       <AddPlanModal refetch={CustomRefetch} />
-      {selectedPlan && (
-       <EditPlanModal plan={selectedPlan} refetch={CustomRefetch} />
-      )}
     </main>
   );
 };

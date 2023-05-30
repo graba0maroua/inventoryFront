@@ -17,12 +17,13 @@ import { signOut } from '../../../features/auth/auth-slice';
 import { useAppDispatch } from '../../hooks';
 
 const AdminPage = () => {
-  const { data, isLoading } = useFetchDemandeCompteQuery();
+  const { data, isLoading,refetch } = useFetchDemandeCompteQuery();
   const [showLogout, setShowLogout] = useState(false);
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
 
-
+  const [acceptDemande] = useAcceptDemandeCompteMutation();
+  const [refuseDemande] = useRefuseDemandeCompteMutation();
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Name', width: 250, },
@@ -106,11 +107,18 @@ const AdminPage = () => {
           <>
             {demande.status === 'pending' && (
               <div className="actions-container">
-                <button className="accept-button ">
+                <button className="accept-button " onClick={async (e)=>{
+                  const result  = await acceptDemande({id:demande.id}).unwrap();
+                  refetch()
+                }}>
                   <FontAwesomeIcon icon={faCheck} className="icon" />
                   Accepter
                 </button>
-                <button className="refuse-button ">
+                <button className="refuse-button" onClick={async (e)=>{
+                  const result  = await refuseDemande({id:demande.id}).unwrap();
+                  refetch()
+
+                }}>
                   <FontAwesomeIcon icon={faTimes} className="icon" />
                   Refuser
                 </button>

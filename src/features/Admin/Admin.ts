@@ -13,14 +13,14 @@ export const AdminSlice = createApi({
      
     
     
-      AcceptDemandeCompte: builder.mutation<StandarResponse,DemandeCompte>({
+      AcceptDemandeCompte: builder.mutation<StandarResponse,{id:number}>({
         query: (demande) => ({
             url: `/acceptDemandeCompte/${demande.id}`,
           method: "PUT",
         }),
       }),
     
-     RefuseDemandeCompte: builder.mutation<StandarResponse, DemandeCompte>({
+     RefuseDemandeCompte: builder.mutation<StandarResponse, {id:number}>({
         query: (demande) => ({
             url: `/refuseDemandeCompte/${demande.id}`,
             method: 'PUT',

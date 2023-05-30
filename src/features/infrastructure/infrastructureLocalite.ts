@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithReauth } from "../../app/services/baseQuery";
 interface InfrastructureLocalite {
-  locality_id: number;
+  locality_id: string;
   locality_name: string;
   total_count: number;
   scanned_count: number;

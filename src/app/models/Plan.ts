@@ -1,9 +1,6 @@
-export class Plan {
-    constructor(
-        public  GROUPE_ID:number,
-        public COP_ID:string,
-        public LOC_ID:string
-    ){
-
-    }
+export interface Plan {
+          GROUPE_ID:number,
+         COP_ID:string,
+         LOC_ID:string
+   
 }

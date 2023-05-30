@@ -12,9 +12,9 @@ import ErrorMessage from '../../../Messages/ErrorMessage';
 
 function AddPlanModal({ refetch }: { refetch: () => void }) {
   const uiState = useAppSelector((state: { planUiSlice: PlanUiState }) => state.planUiSlice);
-  const [groupId, setGroupId] = React.useState(0);
-  const [locId, setLocId] = React.useState('');
-  const [copId, setCopId] = React.useState('');
+  const [groupId, setGroupId] = React.useState(5);
+  const [locId, setLocId] = React.useState('0900L00000010');
+  const [copId, setCopId] = React.useState('0900');
 
   const [storePlan, { isLoading }] = useStorePlanMutation();
 
@@ -87,9 +87,13 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                   <Button
                     className='bg-secondaire'
                     onClick={async () => {
-                      const plan = new Plan(groupId, locId, copId);
+                      
                       try {
-                        const payload = await storePlan(plan);
+                        const payload = await storePlan({
+                          GROUPE_ID:groupId,
+                          LOC_ID:locId,
+                          COP_ID:copId,
+                        }).unwrap();
                         console.log(payload);
                         dispatch(setCreated());
                         refetch();

@@ -8,6 +8,8 @@ import { signOut } from '../../features/auth/auth-slice';
 import inv from "../../assets/Asset 1.svg";
 import profil from "../../assets/user.png";
 import { setMarginLeft } from '../../features/uistate/mainui'
+import SideBar from '../components/SideBarComponent';
+import WelcomeComponent from '../components/WelComeComponent';
 
 const Home = () => {
   const [status, setStatus] = useState(true);
@@ -52,102 +54,13 @@ const Home = () => {
   }, []);
   return (
     <div>
-      {/* SIDEBAR */}
-      <section id="sidebar" className={status ? '' : 'hide'}>
-        <a href="#" className="brand">
-          <img src={inv} alt="Logo" className="logo" onClick={toggleSidebar} />
-        </a>
-        <ul className="side-menu top">
-          <li className="active">
-            <a href="#">
-              <i className="bx bxs-dashboard"></i>
-              <span className="text">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a href="/unite">
-              <i className="bx bxs-barcode"></i>
-              <span className="text">Liste d'inventaire</span>
-            </a>
-          </li>
-          <li>
-            <a href="/unite">
-              <i className="bx bxs-business"></i>
-              <span className="text">Unites</span>
-            </a>
-          </li>
-          <li>
-            <a href="/centres">
-              <i className="bx bxs-buildings"></i>
-              <span className="text">Centres</span>
-            </a>
-          </li>
-          <li>
-            <a href="/infrastructure/localite">
-              <i className="bx bxs-building"></i>
-              <span className="text">Localites</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i className="bx bxs-cog"></i>
-              <span className="text">Settings</span>
-            </a>
-          </li>
-        </ul>
-        <ul className="side-menu">
-          <li>
-            <a href="#" className="logout" onClick={async () => {
-              await logout("");
-              dispatch(signOut());
-            }}>
-              <i className="bx bxs-log-out-circle"></i>
-              <span className="text">Logout</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-      {/* SIDEBAR */}
-      <section id="content">
-        {/* NAVBAR */}
-        <nav className="fixed-top">
-          <i className="bx bx-menu" onClick={toggleSidebar}></i>
-        
-    
-			<form action="#">
-				<div className="form-input">
-					<input type="search" placeholder="Search..."/>
-					<button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
-				</div>
-			</form>
-		<a href="#" className="profile">
-				<img src={profil} alt='profile'/>
-			</a>
-      </nav>
-        {/* NAVBAR */}
-        <main>
-          <div className="head-title">
-            <div className="left">
-              <h1>Infrastructure</h1>
-              <ul className="breadcrumb">
-                <li>
-                  <a href="#">{page}</a>
-                </li>
-                <li><i className='bx bx-chevron-right'></i></li>
-                <li>
-                  <a className="active" href="#">Table de données</a>
-                </li>
-              </ul>
-            </div>
-            
-            <a href="#" className="btn-download">
-					<i className='bx bxs-download' ></i>
-					<span className="text">Download PDF</span>
-				</a>
-          
-          </div>
-        </main>
-      </section>
+      <SideBar  active='dashboard' />
+        <WelcomeComponent 
+        page="welcome"
+        title='Dashboard' 
+        subItem={'statistics'} 
+        downloadLink='#'
+        isDownloadable={false} />
     </div>
   );
 }

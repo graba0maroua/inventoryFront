@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { useFetchCentreQuery } from "../../features/centre/centre"
 import { Spinner } from "react-bootstrap"
-import  Home  from '../views/Home'
+import SideBar from "../components/SideBarComponent"
 const CentrePage = ()=>{
     const [keyword,setKeyword] = useState('')
     const {data,isFetching} = useFetchCentreQuery({keyword:keyword})
     return (<div>
-         <Home/>
+        <SideBar active="centre" />
         <input type="text" className="form-control" onChange={(e)=>{
             setKeyword(e.target.value)
         }} />

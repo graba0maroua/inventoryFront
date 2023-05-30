@@ -10,10 +10,13 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import LoginPage from './app/views/LoginPage.tsx'
 import HomePage from './app/views/Home.tsx'
 import PrivateWrapper from './hoc/Protected.tsx'
-import CentrePage from './app/views/CentrePage.tsx';
 import LocalitePage from './app/views/Infrastructure/LocalitePage';
+import CentrePage from './app/views/Infrastructure/CentrePage';
+import UnitePage from './app/views/Infrastructure/UnitePage';
 import PlanPage from './app/views/PlanInventaire/PlanPage';
 import Chefcentre from './app/views/Listeinventaire/Chefcentre';
+import ChefUnite from './app/views/Listeinventaire/Chefunite';
+import ChefEquipe from './app/views/Listeinventaire/Chefequipe';
 import AdminPage from './app/views/Admin/AdminPage';
 
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -33,16 +36,22 @@ import AdminPage from './app/views/Admin/AdminPage';
             <PrivateWrapper>
               <HomePage />
             </PrivateWrapper>   
+          }>
+            </Route>
+        
+            <Route path="/infrastructure/localite" element={
+            <PrivateWrapper>
+              <LocalitePage />
+            </PrivateWrapper>   
           }/>
-            <Route path="/centres" element={
+            <Route path="/infrastructure/centre" element={
             <PrivateWrapper>
               <CentrePage />
             </PrivateWrapper>   
           }/>
-         
-            <Route path="/infrastructure/localite" element={
+            <Route path="/infrastructure/unite" element={
             <PrivateWrapper>
-              <LocalitePage />
+              <UnitePage />
             </PrivateWrapper>   
           }/>
             <Route path="/plan" element={
@@ -53,6 +62,16 @@ import AdminPage from './app/views/Admin/AdminPage';
             <Route path="/inventoryList-centre" element={
             <PrivateWrapper>
               < Chefcentre/>
+            </PrivateWrapper>   
+          }/>
+            <Route path="/inventoryList-unite" element={
+            <PrivateWrapper>
+              < ChefUnite/>
+            </PrivateWrapper>   
+          }/>
+            <Route path="/inventoryList-equipe" element={
+            <PrivateWrapper>
+              < ChefEquipe/>
             </PrivateWrapper>   
           }/>
             <Route path="/admin" element={

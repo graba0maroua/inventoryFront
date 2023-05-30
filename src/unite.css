@@ -249,3 +249,23 @@ justify-content: center;
 }
 
 /*  */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-loc {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 36px;
+  background: var(--blue);
+  color: var(--light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 10px;
+  font-weight: 500;
+  margin-left: 10px;
+}

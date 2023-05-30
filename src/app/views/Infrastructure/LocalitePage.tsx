@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from '../../views/Home';
 import './../../../unite.css';
+import './../../../dashboard.css';
 import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,GridToolbarFilterButton,GridToolbarExport,
   GridToolbarDensitySelector,
   gridClasses, } from '@mui/x-data-grid';
@@ -9,6 +10,8 @@ import { useFetchInfrastructureLocaliteQuery } from '../../../features/infrastru
 import { ProgressBar, Spinner } from 'react-bootstrap';
 import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
+import SideBar from '../../components/SideBarComponent';
+import WelcomeComponent from '../../components/WelComeComponent';
 
 function CustomToolbar() {
   const buttonStyle = {
@@ -81,8 +84,15 @@ const LocalitePage = () => {
 
   return (
     <main>
-      <Home />
-
+    <SideBar  active='Localités' />
+   
+        <WelcomeComponent 
+        page="Infrastructure"
+        title='Localités' 
+        subItem={'Table de données'} 
+        downloadLink='#'
+        isDownloadable={true} />
+    
       <div className="table-container  margin_left card me-5 p-3 shadow">
         <div style={{ height: '100%' }}>    {/*change longeur tea la table*/}
           <DataGrid className="table" 

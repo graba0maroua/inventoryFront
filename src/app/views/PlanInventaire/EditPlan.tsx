@@ -28,7 +28,6 @@ function EditPlanModal({refetch}:{refetch:()=>void}) {
     <Modal show={uiState.showEdit} onHide={handleClose}   size="lg" centered>
     <Modal.Header className='bg-secondaire' closeButton>
       <Modal.Title ><FontAwesomeIcon icon={faServer} /> Modifier Plan de scan  : {uiState.plan.GROUPE_ID}</Modal.Title>
-      
     </Modal.Header>
     {
     !isLoading?     
@@ -42,9 +41,8 @@ function EditPlanModal({refetch}:{refetch:()=>void}) {
             <Form.Group>
                 <Form.Label>ID Equipe</Form.Label>
                 <Form.Control
-                    type="text"
-                    placeholder='example.naftal.local'
-                    
+                    type="number"
+                    placeholder='example.naftal.local'          
                     value={uiState.plan.GROUPE_ID}
                     onChange={(e)=>{
                        dispatch(setGroupId(e.target.value)) ;
@@ -82,9 +80,12 @@ function EditPlanModal({refetch}:{refetch:()=>void}) {
         Annuler
       </Button>
       <button className="btn bg-primaire" onClick={async () => {
-          const plan = new Plan(uiState.plan.GROUPE_ID,uiState.plan.LOC_ID,uiState.plan.COP_ID);
           try {
-            const payload = await updateServer(plan).unwrap();
+            const payload = await updateServer({
+              GROUPE_ID:uiState.plan.GROUPE_ID,
+              COP_ID:uiState.plan.LOC_ID,
+              LOC_ID:uiState.plan.COP_ID
+            }).unwrap();
             dispatch(setCreated());
             refetch();
           } catch (error) {

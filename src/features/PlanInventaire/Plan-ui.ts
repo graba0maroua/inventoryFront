@@ -20,7 +20,11 @@ const initialState: PlanUiState = {
   show: false,
   created: false,
   isError: false,
-  plan: new Plan(0, '', ''),
+  plan: {
+    GROUPE_ID:0,
+    COP_ID:'',
+    LOC_ID:''
+  },
   showDetail: false,
   showEdit: false,
   showConfirmationMessage: false,
