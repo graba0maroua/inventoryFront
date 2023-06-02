@@ -31,7 +31,6 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
       <Modal
         show={uiState.show}
         onHide={handleClose}
-        size="lg"
         centered
       >
         <Modal.Header className="bg-secondaire" closeButton>
@@ -43,9 +42,9 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
           !isLoading ? (
             !uiState.created ? (
               <div>
-                <Modal.Body>
-                  <Form>
-                    <Form.Group>
+                <Modal.Body >
+                  <Form >
+                    <Form.Group className='w-100'>
                       <Form.Label>ID Equipe</Form.Label>
                       <Form.Control
                         type="number"
@@ -56,7 +55,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                         }}
                       />
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group className='w-100'>
                       <Form.Label>ID Localisation</Form.Label>
                       <Form.Control
                         type="text"
@@ -67,7 +66,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                         }}
                       />
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group className='w-100'>
                       <Form.Label>ID Centre opérationel COP</Form.Label>
                       <Form.Control
                         type="text"

@@ -18,7 +18,13 @@ interface InfrastructureCentre {
           method:"GET"
       })
       }),
+      generatePDFCentre:builder.mutation<{pdf_url:string},{}>({
+        query:()=> ({
+          url:'/export/infrastructurecentre',
+          method:'GET'
+        })
+      })
     }),
   });
 
-  export const {useFetchInfrastructureCentreQuery}=InfrastructureCentreSlice;
+  export const {useFetchInfrastructureCentreQuery,useGeneratePDFCentreMutation}=InfrastructureCentreSlice;

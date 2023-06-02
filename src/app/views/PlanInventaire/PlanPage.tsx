@@ -8,12 +8,15 @@ import { useDeletePlanMutation, useFetchPlansQuery } from '../../../features/Pla
 import AddPlanModal from "../../views/PlanInventaire/AddPlan";
 import EditPlanModal from "../../views/PlanInventaire/EditPlan";
 import { Plan } from "../../../app/models/Plan";
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { show, showEdit } from '../../../features/PlanInventaire/Plan-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faEdit, faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
+import SideBar from '../../components/SideBarComponent';
+import WelcomeComponent from '../../components/WelComeComponent';
+import { MainUiState } from '../../../features/uistate/mainui';
 
 
 
@@ -24,11 +27,14 @@ interface Row {
 }
 
 const PlanPage = () => {
-  const { data, isLoading, isError, refetch } = useFetchPlansQuery();
+  const [keyword,setKeyword] = useState('');
+  const { data, isLoading, isError, refetch } = useFetchPlansQuery({keyword:keyword});
   const dispatch = useAppDispatch();
   const [selectedPlan, setSelectedPlan] = useState<Plan|null>(null);
   const   [deletePlan] = useDeletePlanMutation();
 
+  const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
+  // const margin_right = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginRight);
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID Equipe', width: 200, headerAlign: 'center', align: 'center'},
     { field: 'LOC_ID', headerName: 'ID Localisation', width: 200 , headerAlign: 'center',align: 'center'},
@@ -54,7 +60,6 @@ const PlanPage = () => {
       ),
     },
   ];
-
   const  handleDeletePlan =async (plan:Plan) => {
     const result  = await deletePlan(plan).unwrap();
     refetch();
@@ -81,11 +86,20 @@ const PlanPage = () => {
 
   return (
     <main>
-      <Home />
-      <div className="table-container margin_left card me-2 p-2 shadow">
+      <SideBar active="Localités" />
+      <WelcomeComponent 
+   page="Liste d'inventaire"
+   title="Liste d'inventaire"
+   subItem={'Table de données'} 
+   downloadLink='#'
+   isDownloadable={false}
+   onClickCustom={null} />
+      <div className={`table-container ${margin_left}  card me-2 p-2 shadow`}>
         <div className="d-flex flex-row my-3">
           <div className="col-9 me-4">
-            <Form.Control type="text" placeholder="Equipe, localisation ..." />
+            <Form.Control type="text" placeholder="Equipe, localisation ..." onChange={(e)=>{
+                setKeyword(e.target.value)
+            }} />
           </div>
           <div>
             <Button className='bg-secondaire' onClick={() => dispatch(show())}>

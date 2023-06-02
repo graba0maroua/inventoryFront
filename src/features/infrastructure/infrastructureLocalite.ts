@@ -19,7 +19,13 @@ export const infrastructureLocaliteSlice = createApi({
         method:"GET"
     })
     }),
+    generatePDFLocalites:builder.mutation<{pdf_url:string},{}>({
+      query:()=> ({
+        url:'/export/infrastructurelocalite',
+        method:'GET'
+      })
+    })
   }),
 });
 
-export const { useFetchInfrastructureLocaliteQuery } =infrastructureLocaliteSlice;
+export const { useFetchInfrastructureLocaliteQuery,useGeneratePDFLocalitesMutation } =infrastructureLocaliteSlice;

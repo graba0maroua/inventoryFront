@@ -1,5 +1,4 @@
 import React from 'react';
-import Home from '../../views/Home';
 import './../../../unite.css';
 import './../../../dashboard.css';
 import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,GridToolbarFilterButton,GridToolbarExport,
@@ -7,11 +6,14 @@ import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,Gr
   gridClasses, } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchInfrastructureCentreQuery } from '../../../features/infrastructure/infrastructureCentre';
-import { ProgressBar, Spinner } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap';
 import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
 import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
+import { useGeneratePDFCentreMutation } from '../../../features/infrastructure/infrastructureCentre';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
 function CustomToolbar() {
     const buttonStyle = {
       color: '#072645',
@@ -57,7 +59,18 @@ function CustomToolbar() {
     }
   ];
   const CentrePage = () => {
+    const [generateReport] = useGeneratePDFCentreMutation();
+    const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
+    const dispatch = useAppDispatch();
     const { data, isLoading, isError } = useFetchInfrastructureCentreQuery();
+    const handleDownload = async () => {
+      dispatch(setLoadingState(true)) 
+      dispatch(setShowUrlModal(true))
+        const {pdf_url} = await generateReport({}).unwrap()
+        dispatch(setUrl(pdf_url))
+        // refLink.current?.click()
+        dispatch(setLoadingState(false)) 
+    }
     if (isLoading) {
         return  <div  className="d-flex flex-row justify-content-center"> <Loader/> </div>
       }
@@ -72,7 +85,7 @@ function CustomToolbar() {
       }
       const rows = data ? data.map((item) => ({
         id: item.center_id.toString(),
-        nom: item.center_name.toString(),
+        centre: item.center_name.toString(),
         inventaireScannes: item.scanned_count,
         inventaireNonScannes: item.not_scanned_count,
         total: item.total_count,
@@ -81,14 +94,16 @@ function CustomToolbar() {
      return(
         <main>
         <SideBar  active='Centres' />
-            <WelcomeComponent 
-            page="Infrastructure"
-            title='Centres' 
-            subItem={'Table de données'} 
-            downloadLink='#'
-            isDownloadable={true} />
+        <WelcomeComponent 
+        page="Infrastructure"
+        title='Centres' 
+        subItem={'Table de données'} 
+        downloadLink='#'
+        isDownloadable={true} 
+        onClickCustom = {handleDownload}
+        />
         
-          <div className="table-container  margin_left card me-5 p-3 shadow">
+          <div className={`table-container  ${margin_left} card me-2 p-3 shadow`}>
             <div style={{ height: '100%' }}>    {/*change longeur tea la table*/}
               <DataGrid className="table" 
               rows={rows } 

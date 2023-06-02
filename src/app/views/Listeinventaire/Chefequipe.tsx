@@ -4,6 +4,7 @@ import './../../../unite.css';
 import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarFilterButton, GridToolbarExport, GridToolbarDensitySelector, gridClasses } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchChefEquipeQuery } from '../../../features/ListeInventaire/ChefEquipe';
+import { useFetchVisitedLocaliteQuery,useFetchNotVisitedLocaliteQuery } from '../../../features/ListeInventaire/LocalitesVisEtNonVisite';
 import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +12,7 @@ import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
 import { Button, Modal } from 'react-bootstrap';
+import VisitedLocaliteComponent from '../../components/VisitedLocaliteComponent';
 
 function CustomToolbar() {
   const buttonStyle = {
@@ -34,6 +36,7 @@ function CustomToolbar() {
     </GridToolbarContainer>
   );
 }
+
 
 interface Row {
   id: string;
@@ -87,8 +90,10 @@ const columns: GridColDef[] = [
 
 const ChefEquipe = () => {
   const { data, isLoading, isError } = useFetchChefEquipeQuery();
+  // const { data: notVisitedLocalities, isLoading: notVisitedLoading, isError: notVisitedError } = useFetchNotVisitedLocaliteQuery();
   const [showVisitedModal, setShowVisitedModal] = useState(false);
   const [showNotVisitedModal, setShowNotVisitedModal] = useState(false);
+
 
   const handleVisitedModalOpen = () => {
     setShowVisitedModal(true);
@@ -105,6 +110,24 @@ const ChefEquipe = () => {
   const handleNotVisitedModalClose = () => {
     setShowNotVisitedModal(false);
   };
+  // if (isLoading || visitedLoading || notVisitedLoading) {
+  //   return (
+  //     <div className="d-flex flex-row justify-content-center">
+  //       <Loader />
+  //     </div>
+  //   );
+  // }
+
+  // if (isError || visitedError || notVisitedError) {
+  //   return (
+  //     <div className="alert alert-danger" role="alert">
+  //       <h4 className="alert-heading">ERROR</h4>
+  //       <p>An error happened while fetching data</p>
+  //       <hr />
+  //       <p className="mb-0">error</p>
+  //     </div>
+  //   );
+  // }
 
   if (isLoading) {
     return (
@@ -143,15 +166,16 @@ const ChefEquipe = () => {
   return (
     <main>
       <SideBar active="Localités" />
-      <WelcomeComponent
-        page="Liste d'inventaire"
-        title="Liste d'inventaire"
-        subItem={'Table de données'}
-        downloadLink="#"
-        isDownloadable={false}
-      />
+      <WelcomeComponent 
+   page="Liste d'inventaire"
+   title="Liste d'inventaire"
+   subItem={'Table de données'} 
+   downloadLink='#'
+   isDownloadable={false}
+   onClickCustom={null}
+    />
 
- <div className="button-container">
+<div className="button-container">
         <Button className="btn-loc" onClick={handleVisitedModalOpen}>
           Localités Visitées
         </Button>
@@ -160,15 +184,13 @@ const ChefEquipe = () => {
         </Button>
       </div>
 
-
       {/* Visited Localities Modal */}
       <Modal show={showVisitedModal} onHide={handleVisitedModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Localités Visitées</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Modal content */}
-          <p>This is the content of the visited localities modal.</p>
+         <VisitedLocaliteComponent />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleVisitedModalClose}>
@@ -183,8 +205,15 @@ const ChefEquipe = () => {
           <Modal.Title>Localités Non Visitées</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Modal content */}
-          <p>This is the content of the not visited localities modal.</p>
+          {/* {notVisitedLocalities ? (
+            <ul>
+              {notVisitedLocalities.map((locality) => (
+                <li key={locality.LOC_ID}>{locality.LOC_ID}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>Loading not visited localities...</p>
+          )} */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleNotVisitedModalClose}>

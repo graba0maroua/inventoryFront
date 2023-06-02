@@ -12,6 +12,9 @@ import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
 import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
+import { useGeneratePDFLocalitesMutation } from '../../../features/infrastructure/infrastructureLocalite';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
 
 function CustomToolbar() {
   const buttonStyle = {
@@ -58,8 +61,20 @@ const columns: GridColDef[] = [
 ];
 
 const LocalitePage = () => {
+  const [generateReport] = useGeneratePDFLocalitesMutation();
+  const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
+  const dispatch = useAppDispatch();
   const { data, isLoading, isError } = useFetchInfrastructureLocaliteQuery();
-  
+  const handleDownload = async () => {
+    dispatch(setLoadingState(true)) 
+    dispatch(setShowUrlModal(true))
+      const {pdf_url} = await generateReport({}).unwrap()
+      dispatch(setUrl(pdf_url))
+      // refLink.current?.click()
+      dispatch(setLoadingState(false)) 
+
+
+  }
   if (isLoading) {
     return  <div  className="d-flex flex-row justify-content-center"> <Loader/> </div>
   }
@@ -91,9 +106,11 @@ const LocalitePage = () => {
         title='Localités' 
         subItem={'Table de données'} 
         downloadLink='#'
-        isDownloadable={true} />
+        isDownloadable={true} 
+        onClickCustom = {handleDownload}
+        />
     
-      <div className="table-container  margin_left card me-5 p-3 shadow">
+      <div className={`table-container ${margin_left} card me-2 p-3 shadow`}>
         <div style={{ height: '100%' }}>    {/*change longeur tea la table*/}
           <DataGrid className="table" 
           rows={rows } 

@@ -6,12 +6,14 @@ import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,Gr
   GridToolbarDensitySelector,
   gridClasses, } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
-import { useFetchInfrastructureUniteQuery } from '../../../features/infrastructure/infrastructureUnite';
+import { useFetchInfrastructureUniteQuery ,useGeneratePDFUniteMutation } from '../../../features/infrastructure/infrastructureUnite';
 import { ProgressBar, Spinner } from 'react-bootstrap';
 import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
 import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
+import { setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
+import { useAppDispatch } from '../../hooks';
 function CustomToolbar() {
     const buttonStyle = {
       color: '#072645',
@@ -57,11 +59,20 @@ function CustomToolbar() {
     }
   ];
   const UnitePage = () => {
+    const [generateReport] = useGeneratePDFUniteMutation();
     const { data, isLoading, isError } = useFetchInfrastructureUniteQuery();
+    const dispatch = useAppDispatch();
+    const handleDownload = async () => {
+      dispatch(setLoadingState(true)) 
+      dispatch(setShowUrlModal(true))
+        const {pdf_url} = await generateReport({}).unwrap()
+        dispatch(setUrl(pdf_url))
+        // refLink.current?.click()
+        dispatch(setLoadingState(false)) 
+    }
     if (isLoading) {
         return  <div  className="d-flex flex-row justify-content-center"> <Loader/> </div>
-      }
-    
+      } 
       if (isError) {
         return ( <div className="alert alert-danger" role="alert">
         <h4 className="alert-heading">ERROR</h4>
@@ -72,7 +83,7 @@ function CustomToolbar() {
       }
       const rows = data ? data.map((item) => ({
         id: item.unit_id.toString(),
-        nom: item.unit_name,
+        unite: item.unit_name,
         inventaireScannes: item.scanned_count,
         inventaireNonScannes: item.not_scanned_count,
         total: item.total_count,
@@ -81,16 +92,16 @@ function CustomToolbar() {
      return(
         <main>
         <SideBar  active='Unités' />
-            <WelcomeComponent 
-            page="Infrastructure"
-            title='Unités' 
-            subItem={'Table de données'} 
-            downloadLink='#'
-            isDownloadable={true} />
-           
-        
+        <WelcomeComponent 
+        page="Infrastructure"
+        title='Unités' 
+        subItem={'Table de données'} 
+        downloadLink='#'
+        isDownloadable={true} 
+        onClickCustom = {handleDownload}
+        />
           <div className="table-container  margin_left card me-5 p-3 shadow">
-            <div style={{ height: '100%' }}>    {/*change longeur tea la table*/}
+            <div style={{ height: '100%' }}> {/*change longeur tea la table*/}
               <DataGrid className="table" 
               rows={rows } 
               columns={columns}  
@@ -113,10 +124,10 @@ function CustomToolbar() {
                 bgcolor: (theme) => theme.palette.mode === 'light' ? blueGrey[(50)] : grey[50],
               },
             }} />
-            
             </div>
           </div>
         </main>
      )
   };
   export default UnitePage;
+

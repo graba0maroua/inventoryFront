@@ -18,6 +18,12 @@ interface InfrastructureUnite {
           method:"GET"
       })
       }),
+      generatePDFUnite:builder.mutation<{pdf_url:string},{}>({
+        query:()=> ({
+          url:'/export/infrastructureunite',
+          method:'GET'
+        })
+      })
     }),
   });
-  export const {useFetchInfrastructureUniteQuery }=InfrastructureUniteSlice;
+  export const {useFetchInfrastructureUniteQuery, useGeneratePDFUniteMutation }=InfrastructureUniteSlice;
