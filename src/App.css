@@ -370,4 +370,20 @@ form.sign-in-form {
     left: 50%;
   }
 }
+.input-field {
+  position: relative; /* Add this */
+}
 
+.input-field .error {
+  position: absolute; /* Add this */
+  color: red; /* Add this */
+  font-size: 0.8rem; /* Customize the font size */
+  bottom: -20px; /* Adjust the position as needed */
+  left: 0; /* Adjust the position as needed */
+}
+
+.snack_bar_custom{
+  position: absolute;
+  bottom: -2vw;
+  right: 1vw;
+}

@@ -8,9 +8,12 @@ import { store } from './app/store.ts'
 import PublicWrapper from './hoc/UnProtected'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import LoginPage from './app/views/LoginPage.tsx'
+import SettingsPage from './app/views/SettingsPage.tsx'
 import HomePage from './app/views/Home.tsx'
 import PrivateWrapper from './hoc/Protected.tsx'
 import LocalitePage from './app/views/Infrastructure/LocalitePage';
+import ChartComponent from './app/views/Chart';
+import PieChartEquipe from './app/views/PieChartEquipe';
 import CentrePage from './app/views/Infrastructure/CentrePage';
 import UnitePage from './app/views/Infrastructure/UnitePage';
 import PlanPage from './app/views/PlanInventaire/PlanPage';
@@ -44,6 +47,16 @@ import AdminPage from './app/views/Admin/AdminPage';
               <LocalitePage />
             </PrivateWrapper>   
           }/>
+            <Route path="/lineChart" element={
+            <PrivateWrapper>
+              <ChartComponent />
+            </PrivateWrapper>   
+          }/>
+            <Route path="/pieChart1" element={
+            <PrivateWrapper>
+              <PieChartEquipe />
+            </PrivateWrapper>   
+          }/>
             <Route path="/infrastructure/centre" element={
             <PrivateWrapper>
               <CentrePage />
@@ -52,6 +65,11 @@ import AdminPage from './app/views/Admin/AdminPage';
             <Route path="/infrastructure/unite" element={
             <PrivateWrapper>
               <UnitePage />
+            </PrivateWrapper>   
+          }/>
+            <Route path="/updatePassword" element={
+            <PrivateWrapper>
+              <SettingsPage />
             </PrivateWrapper>   
           }/>
             <Route path="/plan" element={

@@ -1,18 +1,31 @@
 import { useState } from "react"
-import { loginParams, useFetchInitialRegisterDataQuery, useLoginMutation } from "../../features/auth/login"
+import { loginParams, useFetchInitialRegisterDataQuery, useLoginMutation ,useRegisterMutation} from "../../features/auth/login"
 import { useAppDispatch } from "../hooks"
 import { AuthState, setCredentials } from "../../features/auth/auth-slice"
 import imgL from "../../assets/log2.svg"
 import "./../../App.css"
 import { FormSelect } from "react-bootstrap"
 import { roles } from "../constantes/constantes"
-
+import SnackBarComponent from "../components/SnackBarComponent"
+import { hideSnackBar, showSnackBar } from "../../features/snack_bar/snack_bar"
+import { FaCheck } from "react-icons/fa"
+import { BsXCircleFill } from "react-icons/bs"
 function LoginPage() {
   const [loginp, setLoginparams] = useState(new loginParams("", ""));
+  const [registerParams, setRegisterParams] = useState({
+    name: "",
+    email: "",
+    matricule: "",
+    password: "",
+    role: roles[0],
+    structureType: "",
+    structureId: "",
+  });
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
   const {data,isFetching,refetch,isLoading} = useFetchInitialRegisterDataQuery({});
+  const [register] = useRegisterMutation();
   const handleModeSwitch = () => {
     setIsSignUpMode(!isSignUpMode);
   };
@@ -23,6 +36,8 @@ function LoginPage() {
       <div className="forms-container">
         <div className="signin-signup">
           <form action="#" className="sign-in-form">
+          <SnackBarComponent />
+
             <h2 className="title">Connectez vous</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
@@ -50,12 +65,38 @@ function LoginPage() {
                 }
               />
             </div>
-            <input type="submit" value="Connexion" className="bttn solid" onClick={async () => {
-          
+
+            <input type="submit" value="Connexion" 
             
-          const  {id,name,token,role}   = await login(loginp).unwrap();
-          alert("logged in");
-          dispatch(setCredentials(new AuthState(true,token,name,id,role)));
+            className={
+              ((loginp.matricule.trim().length > 4) 
+              && (loginp.password.trim().length > 7)) ? 
+              "bttn solid":
+              "btn btn-secondary rounded-pill btn-lg"} 
+              disabled={ !((loginp.matricule.trim().length > 4) 
+                && (loginp.password.trim().length > 7))}
+            onClick={async () => {
+              try {
+                const  {id,name,token,role}   = await login(loginp).unwrap();
+                dispatch(setCredentials(new AuthState(true,token,name,id,role)));
+                dispatch(showSnackBar({
+                  bgColor:"bg-success",
+                  message:"Connecté avec succès",
+                  icon:FaCheck
+                }))
+                setTimeout(()=>{
+                  dispatch(hideSnackBar())
+                },2500)
+              } catch (error) {
+                dispatch(showSnackBar({
+                  bgColor:"bg-danger",
+                  message:"Erreur matricule ou mot de passe incorrect",
+                  icon:BsXCircleFill
+                }))
+                setTimeout(()=>{
+                  dispatch(hideSnackBar())
+                },2500)
+              }
    
   
  }} />
@@ -66,51 +107,132 @@ function LoginPage() {
             <h2 className="title">Crée un compte</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Full name" />
+              <input
+                type="text"
+                placeholder="Full name"
+                onChange={(e) =>
+                  setRegisterParams((params) => ({
+                    ...params,
+                    name: e.target.value,
+                  }))
+                }
+              />
             </div>
             <div className="col-12 px-5 my-2">
-    <i className="fas fa-select"></i>
-    <FormSelect className="border shadow-sm bg-light rounded " onChange={(e) => {
-      setRole(e.target.value);
-    }}>
-      {roles.map((role) => {
-        return (<option key={role} value={role}>{role}</option>);
-      })}
-    </FormSelect>
-  </div>
-  {role !== "Chef_unité" && <div className="col-12 px-5 my-2">
-    <i className="fas fa-select"></i>
-    <FormSelect className="border shadow-sm bg-light rounded">
-      {!isFetching &&
-        data?.centres.map((centre) => {
-          return (<option key={centre.COP_ID} value={centre.COP_ID}>{centre.COP_LIB}</option>);
-        })}
-    </FormSelect>
-  </div>}
-  {role === "Chef_unité" && <div className="col-12 px-5 my-2">
-    <i className="fas fa-select"></i>
-    <FormSelect className="border shadow-sm bg-light rounded">
-      {!isFetching &&
-        data?.unites.map((unites) => {
-          return (<option key={unites.UCM_ID} value={unites.UCM_ID}>{unites.UCM_LIB}</option>);
-        })}
-    </FormSelect>
-  </div>}
-            
+              <i className="fas fa-select"></i>
+              <FormSelect
+                className="border shadow-sm bg-light rounded"
+                onChange={(e) => {
+                  setRegisterParams((params) => ({
+                    ...params,
+                    role: e.target.value,
+                  }));
+                }}
+              >
+                {roles.map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
+                ))}
+              </FormSelect>
+            </div>
+            {registerParams.role !== "Chef_unité" && (
+              <div className="col-12 px-5 my-2">
+                <i className="fas fa-select"></i>
+                <FormSelect
+                  className="border shadow-sm bg-light rounded"
+                  onChange={(e) => {
+                    setRegisterParams((params) => ({
+                      ...params,
+                      structureId: e.target.value,
+                    }));
+                  }}
+                >
+                  {!isFetching &&
+                    data?.centres.map((centre) => (
+                      <option key={centre.COP_LIB} value={centre.COP_LIB}>
+                        {centre.COP_LIB}
+                      </option>
+                    ))}
+                </FormSelect>
+              </div>
+            )}
+            {registerParams.role === "Chef_unité" && (
+              <div className="col-12 px-5 my-2">
+                <i className="fas fa-select"></i>
+                <FormSelect
+                  className="border shadow-sm bg-light rounded"
+                  onChange={(e) => {
+                    setRegisterParams((params) => ({
+                      ...params,
+                      structureId: e.target.value,
+                    }));
+                  }}
+                >
+                  {!isFetching &&
+                    data?.unites.map((unites) => (
+                      <option key={unites.UCM_LIB} value={unites.UCM_LIB}>
+                        {unites.UCM_LIB}
+                      </option>
+                    ))}
+                </FormSelect>
+              </div>
+            )}
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                placeholder="Email"
+                onChange={(e) =>
+                  setRegisterParams((params) => ({
+                    ...params,
+                    email: e.target.value,
+                  }))
+                }
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Matricule" />
+              <input
+                type="text"
+                placeholder="Matricule"
+                onChange={(e) =>
+                  setRegisterParams((params) => ({
+                    ...params,
+                    matricule: e.target.value,
+                  }))
+                }
+              />
             </div>
-    
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) =>
+                  setRegisterParams((params) => ({
+                    ...params,
+                    password: e.target.value,
+                  }))
+                }
+              />
             </div>
-            <input type="submit" className="bttn" value="s'inscrire" />
+            <input
+  type="submit"
+  className="bttn"
+  value="S'inscrire"
+  onClick={async (e) => {
+    e.preventDefault();
+    try {
+      const response = await register(registerParams).unwrap();
+      alert("user registered succesefully ");
+    } catch (error) {
+      // Handle error if registration fails
+      console.error(error);
+      alert("Registration failed. Please try again.");
+    }
+  }}
+/>
           </form>
         </div>
       </div>

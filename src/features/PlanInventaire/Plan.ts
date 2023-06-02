@@ -10,9 +10,9 @@ export const planSlice = createApi({
   endpoints: (builder) => ({
 
 
-    fetchPlans: builder.query<Plan[], void>({
-      query: () => ({
-        url:"/inventory-plan", 
+    fetchPlans: builder.query<Plan[], {keyword:string}>({
+      query: ({keyword}) => ({
+        url:`/inventory-plan?keyword=${keyword}`, 
         method:"GET"
     })}),
  

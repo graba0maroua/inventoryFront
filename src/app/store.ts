@@ -10,9 +10,12 @@ import {planSlice} from "../features/PlanInventaire/Plan";
 import {ChefCentreSlice} from "../features/ListeInventaire/ChefCentre";
 import {ChefUniteSlice} from "../features/ListeInventaire/ChefUnite";
 import {ChefEquipeSlice} from "../features/ListeInventaire/ChefEquipe";
+import {LineChartSlice} from "../features/Charts/LineChart";
+import {PieChartSlice} from "../features/Charts/PieChart";
 import {localiteSlice} from "../features/ListeInventaire/LocalitesVisEtNonVisite";
 import planUiSlice from "../features/PlanInventaire/Plan-ui";
 import {AdminSlice} from "../features/Admin/Admin";
+import snackBarSlice from "../features/snack_bar/snack_bar";
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +24,7 @@ export const store = configureStore({
     [centreSlice.reducerPath]: centreSlice.reducer,
     mainUiSlice: mainUiReducer,
     planUiSlice: planUiSlice,
+    snackBar:snackBarSlice,
     [infrastructureLocaliteSlice.reducerPath]: infrastructureLocaliteSlice.reducer,
     [InfrastructureUniteSlice.reducerPath]: InfrastructureUniteSlice.reducer,
     [InfrastructureCentreSlice.reducerPath]: InfrastructureCentreSlice.reducer,
@@ -29,7 +33,9 @@ export const store = configureStore({
     [ChefEquipeSlice.reducerPath]: ChefEquipeSlice.reducer,
     [ChefUniteSlice.reducerPath]: ChefUniteSlice.reducer,
     [AdminSlice.reducerPath]: AdminSlice.reducer,
-    // [localiteSlice.reducerPath]: localiteSlice.reducer, //!jsp why its showing an error
+    [LineChartSlice.reducerPath]: LineChartSlice.reducer,
+    [localiteSlice.reducerPath]: localiteSlice.reducer, 
+    [PieChartSlice.reducerPath]: PieChartSlice.reducer, 
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
@@ -43,7 +49,9 @@ export const store = configureStore({
       ChefUniteSlice.middleware,
       ChefEquipeSlice.middleware,
       AdminSlice.middleware,
-      // localiteSlice.middleware,
+      localiteSlice.middleware,
+      LineChartSlice.middleware,
+      PieChartSlice.middleware,
 
 
     );
