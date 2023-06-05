@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Home from '../../views/Home';
 import './../../../unite.css';
-import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarFilterButton, GridToolbarExport, GridToolbarDensitySelector, gridClasses } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarFilterButton, GridToolbarDensitySelector, gridClasses } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchChefEquipeQuery } from '../../../features/ListeInventaire/ChefEquipe';
 import { useFetchVisitedLocaliteQuery,useFetchNotVisitedLocaliteQuery } from '../../../features/ListeInventaire/LocalitesVisEtNonVisite';
@@ -15,6 +15,8 @@ import { Button, Modal } from 'react-bootstrap';
 import VisitedLocaliteComponent from '../../components/VisitedLocaliteComponent';
 import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
 import { useAppSelector } from '../../hooks';
+import { BsBuildingCheck, BsBuildingFillCheck, BsBuildingFillSlash } from 'react-icons/bs';
+import NotVisitedLocaliteComponent from '../../components/NotVisitedLocaliteComponent';
 
 function CustomToolbar() {
   const buttonStyle = {
@@ -34,7 +36,6 @@ function CustomToolbar() {
       <style>
         {`.toolbar-button:hover { background-color: ${buttonHoverStyle.backgroundColor}; }`}
       </style>
-      <GridToolbarExport style={buttonStyle} />
     </GridToolbarContainer>
   );
 }
@@ -179,43 +180,39 @@ const ChefEquipe = () => {
 
 <div className="button-container">
         <Button className="btn-loc" onClick={handleVisitedModalOpen}>
-          Localités Visitées
+        <BsBuildingFillCheck /> Localités Visitées
         </Button>
         <Button className="btn-loc" onClick={handleNotVisitedModalOpen}>
-          Localités Non Visitées
+         <BsBuildingFillSlash/> Localités Non Visitées
         </Button>
       </div>
 
       {/* Visited Localities Modal */}
-      <Modal show={showVisitedModal} onHide={handleVisitedModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Localités Visitées</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-         <VisitedLocaliteComponent />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleVisitedModalClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <Modal  className='w-100' show={showVisitedModal} onHide={handleVisitedModalClose}>
+  <Modal.Header className="bg-secondaire" closeButton>
+    <Modal.Title className="text-center" style={{ fontSize: '20px', fontFamily: 'lato' ,fontWeight :700  ,}}>
+      <BsBuildingFillCheck className='me-2' /> Localités Visitées
+    </Modal.Title>
+  </Modal.Header>
+  <Modal.Body >
+    <VisitedLocaliteComponent />
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleVisitedModalClose}>
+      Fermer
+    </Button>
+  </Modal.Footer>
+</Modal>
 
       {/* Not Visited Localities Modal */}
-      <Modal show={showNotVisitedModal} onHide={handleNotVisitedModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Localités Non Visitées</Modal.Title>
+      <Modal centered show={showNotVisitedModal} onHide={handleNotVisitedModalClose}>
+        <Modal.Header className="bg-secondaire" closeButton>
+        <Modal.Title className="text-center" style={{ fontSize: '20px', fontFamily: 'lato' ,fontWeight :700  ,}}>
+        <BsBuildingFillSlash className='me-2' /> Localités Visitées
+    </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* {notVisitedLocalities ? (
-            <ul>
-              {notVisitedLocalities.map((locality) => (
-                <li key={locality.LOC_ID}>{locality.LOC_ID}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>Loading not visited localities...</p>
-          )} */}
+        <NotVisitedLocaliteComponent />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleNotVisitedModalClose}>
