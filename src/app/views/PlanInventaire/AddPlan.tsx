@@ -35,7 +35,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
       >
         <Modal.Header className="bg-secondaire" closeButton>
           <Modal.Title >
-            <FontAwesomeIcon icon={faBarcode} className='me-2' /> Add a New Plan
+            <FontAwesomeIcon icon={faBarcode} className='me-2' /> Ajouter un nouveau plan d'inventaire
           </Modal.Title>
         </Modal.Header>
         {!uiState.isError ? (

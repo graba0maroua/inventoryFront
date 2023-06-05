@@ -5,10 +5,12 @@ import ChartComponent from "../Chart";
 import { useAppSelector } from "../../hooks";
 import PieChartEquipe from "../PieChartEquipe";
 import { MainUiState } from '../../../features/uistate/mainui';
+import { useFetchProgressChartQuery } from '../../../features/Charts/PieChart';
 const DashboardChefEquipe = () => {
     const [page, setPage] = useState('Dashboard');
     const [status, setStatus] = useState(true);
     const role = useAppSelector((state) => state.auth.role);
+    const { data, isLoading, isError } = useFetchProgressChartQuery();
     const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
     useEffect(() => {
         const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
@@ -42,9 +44,9 @@ const DashboardChefEquipe = () => {
         
         <div>
         <SideBar  active='dashboard' />
-          <WelcomeComponent 
-          page="welcome"
-          title='Dashboard' 
+        <WelcomeComponent 
+          page="performance"
+          title='Tableau de bord' 
           subItem={'statistics'} 
           downloadLink='#'
           isDownloadable={false} 
@@ -55,21 +57,21 @@ const DashboardChefEquipe = () => {
           <li>
             <i className='bx bx-list-ol'></i>
             <span className="text">
-                  <h3>14281</h3>
+                  <h3>{data?.total_count}</h3>
                   <p>Total Inventaire</p>
                   </span>
           </li>
           <li>
             <i className='bx bx-trending-up'></i>
             <span className="text">
-              <h3>2089</h3>
+              <h3>{data?.scanned_count}</h3>
               <p>Inventaire Scannés</p>
             </span>
           </li>
           <li>
             <i className='bx bx-trending-down'></i>
             <span className="text">
-              <h3>12192</h3>
+              <h3>{data?.not_scanned_count}</h3>
               <p>Inventaire Non Scannés</p>
             </span>
           </li>

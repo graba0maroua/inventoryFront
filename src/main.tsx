@@ -9,6 +9,7 @@ import PublicWrapper from './hoc/UnProtected'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import LoginPage from './app/views/LoginPage.tsx'
 import SettingsPage from './app/views/SettingsPage.tsx'
+import MyComponent from './app/views/ProfilePage'
 import HomePage from './app/views/Home.tsx'
 import PrivateWrapper from './hoc/Protected.tsx'
 import LocalitePage from './app/views/Infrastructure/LocalitePage';
@@ -95,6 +96,11 @@ import AdminPage from './app/views/Admin/AdminPage';
             <Route path="/admin" element={
             <PrivateWrapper>
               < AdminPage/>
+            </PrivateWrapper>   
+          }/>
+            <Route path="/profil" element={
+            <PrivateWrapper>
+              < MyComponent/>
             </PrivateWrapper>   
           }/>
           </Routes> 

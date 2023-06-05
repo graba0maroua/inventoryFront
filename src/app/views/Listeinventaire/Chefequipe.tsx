@@ -13,6 +13,8 @@ import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
 import { Button, Modal } from 'react-bootstrap';
 import VisitedLocaliteComponent from '../../components/VisitedLocaliteComponent';
+import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
+import { useAppSelector } from '../../hooks';
 
 function CustomToolbar() {
   const buttonStyle = {
@@ -93,7 +95,7 @@ const ChefEquipe = () => {
   // const { data: notVisitedLocalities, isLoading: notVisitedLoading, isError: notVisitedError } = useFetchNotVisitedLocaliteQuery();
   const [showVisitedModal, setShowVisitedModal] = useState(false);
   const [showNotVisitedModal, setShowNotVisitedModal] = useState(false);
-
+  const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
 
   const handleVisitedModalOpen = () => {
     setShowVisitedModal(true);
@@ -222,7 +224,8 @@ const ChefEquipe = () => {
         </Modal.Footer>
       </Modal>
 
-      <div className="table-container margin_left card me-5 p-3 shadow">
+        
+      <div className={`table-container ${margin_left} card me-2 p-3 shadow`}>
         <div style={{ height: '100%' }}>
           <DataGrid
             className="table"

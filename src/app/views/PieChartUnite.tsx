@@ -43,7 +43,7 @@ const PieChartUnite = () => {
 
   return (
     <div>
-      <h2>Pie Chart - Unite</h2>
+      {/* <h2>Pie Chart - Unite</h2> */}
       <Doughnut data={chartData} />
     </div>
   );

@@ -209,7 +209,6 @@ const AdminPage = () => {
           }}
         pageSizeOptions={[5, 10, 25,50,100]}
           localeText={frFRLocalization}
-          checkboxSelection
           getRowSpacing={(params) => ({
             top: params.isFirstVisible ? 0 : 5,
             bottom: params.isLastVisible ? 0 : 5,

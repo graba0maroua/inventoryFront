@@ -42,9 +42,9 @@ export const PieChartSlice = createApi({
       })
       }),
 
-      fetchProgressChart: builder.query<Progress[], void>({
+      fetchProgressChart: builder.query<Progress, void>({
         query: () => ({
-          url: "/ProgressChart",
+          url: "/Progress",
           method: "GET",
         }),
       }),

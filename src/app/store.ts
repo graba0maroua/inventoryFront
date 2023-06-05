@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import authReducer from "./../features/auth/auth-slice";
 import { apiSlice } from "./../features/auth/login";
+import { UserSlice } from "./../features/auth/user";
 import { centreSlice } from "../features/centre/centre";
 import mainUiReducer from "../features/uistate/mainui";
 import {infrastructureLocaliteSlice} from "../features/infrastructure/infrastructureLocalite";
@@ -36,6 +37,7 @@ export const store = configureStore({
     [LineChartSlice.reducerPath]: LineChartSlice.reducer,
     [localiteSlice.reducerPath]: localiteSlice.reducer, 
     [PieChartSlice.reducerPath]: PieChartSlice.reducer, 
+    [UserSlice.reducerPath]: UserSlice.reducer, 
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
@@ -52,6 +54,7 @@ export const store = configureStore({
       localiteSlice.middleware,
       LineChartSlice.middleware,
       PieChartSlice.middleware,
+      UserSlice.middleware,
 
 
     );

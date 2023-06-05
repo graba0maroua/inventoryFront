@@ -1,7 +1,42 @@
-const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownloadable:boolean,downloadLink:string}) => {
-    const {title,subItem,isDownloadable,page,downloadLink} = param
+import { useRef, useState } from "react";
+// import { useGeneratePDFLocalitesMutation } from "../../features/infrastructure/infrastructureCentre" //!
+import Lottie from "lottie-react";
+import Annimation from "./../../assets/annimation.json";
+import { Button, Modal } from "react-bootstrap";
+import { backend_server, baseUrl } from "../constantes/constantes";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from "../../features/uistate/mainui";
+
+const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownloadable:boolean,downloadLink:string,
+    onClickCustom :  (() => Promise<void>) | null }) => {
+    const {title,subItem,isDownloadable,page , onClickCustom} = param
+    const url = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.url);
+    const isLoading = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.isLoading);
+    const showUrlModal = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.showUrlModal);
+
+    const dispatch = useAppDispatch();
+ 
+    // const refLink = useRef<HTMLAnchorElement>(null)
+    // const [generateReport] = useGeneratePDFLocalitesMutation(); //!
     return(
+      
       <section id="content">
+        <Modal show={showUrlModal} onHide={() => dispatch(setShowUrlModal(false))}>
+        
+        <Modal.Body>
+          {isLoading &&  ( <Lottie animationData={Annimation} loop={true} /> )}
+          {!isLoading &&  ( 
+            <div>
+              <a  href={backend_server.substring(0,backend_server.length-1)+url} download={true} 
+              // ref={refLink}
+              > Download</a> 
+            </div>
+           )}
+
+        </Modal.Body>
+        
+      </Modal>
+
         <main>
         <div className="head-title">
           <div className="left">
@@ -18,10 +53,10 @@ const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownl
           </div>
           
      {
-    isDownloadable &&  <a href="#" className="btn-download">
+    isDownloadable &&  <button  className="btn btn-download" onClick={(e) => onClickCustom()}>
                   <i className='bx bxs-download' ></i>
                   <span className="text">Download PDF</span>
-              </a>
+              </button>
         
      }     
         

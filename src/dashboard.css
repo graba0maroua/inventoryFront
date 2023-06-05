@@ -307,7 +307,14 @@ body {
 
 
 
-
+.icon-button {
+	display: flex;
+	align-items: center;
+  }
+  
+  .icon-button i {
+	margin-right: 0.5rem; /* Adjust the margin as needed */
+  }
 
 
 @media screen and (max-width: 576px) {

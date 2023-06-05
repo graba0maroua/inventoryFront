@@ -12,6 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
+import { useAppSelector } from '../../hooks';
+import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
 
 function CustomToolbar() {
     const buttonStyle = {
@@ -87,7 +89,7 @@ function CustomToolbar() {
 
   const Chefunite = () => {
     const { data, isLoading, isError } = useFetchChefUniteQuery();
-
+    const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
   if (isLoading) {
     return (
       <div className="d-flex flex-row justify-content-center">
@@ -130,7 +132,8 @@ function CustomToolbar() {
    subItem={'Table de données'} 
    downloadLink='#'
    isDownloadable={false} />
-      <div className="table-container margin_left card me-5 p-3 shadow">
+    
+    <div className={`table-container ${margin_left} card me-2 p-3 shadow`}>
         <div style={{ height: '100%' }}>
           <DataGrid
             className="table"

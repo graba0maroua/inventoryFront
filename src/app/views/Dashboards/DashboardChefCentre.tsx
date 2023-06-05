@@ -5,12 +5,14 @@ import ChartComponent from "../Chart";
 import PieChart from "../PieChartUnite";
 import PieChartCentre from "../PieChartCentre";
 import { useAppSelector } from "../../hooks";
-
+import { MainUiState } from '../../../features/uistate/mainui';
+import { useFetchProgressChartQuery } from '../../../features/Charts/PieChart';
 const  DashboardChefCentre = () => {
   const [page, setPage] = useState('Dashboard');
     const [status, setStatus] = useState(true);
     const role = useAppSelector((state) => state.auth.role);
-
+    const { data, isLoading, isError } = useFetchProgressChartQuery();
+    const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
     useEffect(() => {
         const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
         allSideMenu.forEach((item) => {
@@ -39,49 +41,52 @@ const  DashboardChefCentre = () => {
           });
         };
       }, []);
+      console.log(data);
     return (
-        
+       
         <div>
         <SideBar  active='dashboard' />
-          <WelcomeComponent 
-          page="welcome"
-          title='Dashboard' 
+        <WelcomeComponent 
+          page="performance"
+          title='Tableau de bord' 
           subItem={'statistics'} 
           downloadLink='#'
           isDownloadable={false} 
           onClickCustom={null}
           />
           <main>
-        <ul className="box-info">
+          <ul className={`box-info  ${margin_left}`} >
           <li>
             <i className='bx bx-list-ol'></i>
             <span className="text">
-                  <h3>14281</h3>
+                  <h3>{data?.total_count}</h3>
                   <p>Total Inventaire</p>
                   </span>
           </li>
           <li>
             <i className='bx bx-trending-up'></i>
             <span className="text">
-              <h3>2089</h3>
+              <h3>{data?.scanned_count}</h3>
               <p>Inventaire Scannés</p>
             </span>
           </li>
           <li>
             <i className='bx bx-trending-down'></i>
             <span className="text">
-              <h3>12192</h3>
+              <h3>{data?.not_scanned_count}</h3>
               <p>Inventaire Non Scannés</p>
             </span>
           </li>
         </ul>
       </main>
-        <div className="table-container  margin_left card me-5 p-3 shadow">
-  <ChartComponent/>
-    </div>
-    <div className="table-container  margin_left card me-5 p-3 shadow">
+      <div className="cards-container">
+  <div className={`card-table ${margin_left} card me-2 p-2 shadow`}>
+    <ChartComponent />
+  </div>
+  <div className="card-table card me-5 p-3 shadow">
        <PieChartCentre/>
         </div>
+      </div>
       </div>
     );
 }

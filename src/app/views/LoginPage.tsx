@@ -105,19 +105,6 @@ function LoginPage() {
           </form>
           <form action="#" className="sign-up-form">
             <h2 className="title">Crée un compte</h2>
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input
-                type="text"
-                placeholder="Full name"
-                onChange={(e) =>
-                  setRegisterParams((params) => ({
-                    ...params,
-                    name: e.target.value,
-                  }))
-                }
-              />
-            </div>
             <div className="col-12 px-5 my-2">
               <i className="fas fa-select"></i>
               <FormSelect
@@ -178,6 +165,19 @@ function LoginPage() {
                 </FormSelect>
               </div>
             )}
+            <div className="input-field">
+              <i className="fas fa-user"></i>
+              <input
+                type="text"
+                placeholder="Full name"
+                onChange={(e) =>
+                  setRegisterParams((params) => ({
+                    ...params,
+                    name: e.target.value,
+                  }))
+                }
+              />
+            </div>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
               <input
@@ -241,7 +241,7 @@ function LoginPage() {
           <div className="content">
             <h3>Nouveau ici?</h3>
             <p>
-            Si vous n'avez pas encore de compte, vous pouvez vous inscrire dès maintenant. 
+            Si vous n'avez pas encore un compte, vous pouvez vous inscrire dès maintenant. 
             </p>
             <button className="bttn transparent" id="sign-up-btn" onClick={handleModeSwitch}>
             s'inscrire

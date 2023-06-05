@@ -12,8 +12,9 @@ import { blueGrey, grey } from '@mui/material/colors';
 import Loader from '../../../Messages/Loader';
 import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
-import { setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
-import { useAppDispatch } from '../../hooks';
+import {MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+
 function CustomToolbar() {
     const buttonStyle = {
       color: '#072645',
@@ -62,6 +63,7 @@ function CustomToolbar() {
     const [generateReport] = useGeneratePDFUniteMutation();
     const { data, isLoading, isError } = useFetchInfrastructureUniteQuery();
     const dispatch = useAppDispatch();
+    const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
     const handleDownload = async () => {
       dispatch(setLoadingState(true)) 
       dispatch(setShowUrlModal(true))
@@ -100,7 +102,8 @@ function CustomToolbar() {
         isDownloadable={true} 
         onClickCustom = {handleDownload}
         />
-          <div className="table-container  margin_left card me-5 p-3 shadow">
+              
+      <div className={`table-container ${margin_left} card me-2 p-3 shadow`}>
             <div style={{ height: '100%' }}> {/*change longeur tea la table*/}
               <DataGrid className="table" 
               rows={rows } 

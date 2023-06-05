@@ -88,8 +88,8 @@ const PlanPage = () => {
     <main>
       <SideBar active="Localités" />
       <WelcomeComponent 
-   page="Liste d'inventaire"
-   title="Liste d'inventaire"
+   page="Plan d'inventaire"
+   title="Plan d'inventaire"
    subItem={'Table de données'} 
    downloadLink='#'
    isDownloadable={false}
@@ -103,7 +103,7 @@ const PlanPage = () => {
           </div>
           <div>
             <Button className='bg-secondaire' onClick={() => dispatch(show())}>
-              <FontAwesomeIcon icon={faAdd} /> Ajouter un plan de scan
+              <FontAwesomeIcon icon={faAdd} /> Ajouter  plan d'inventaire
             </Button>
           </div>
         </div>

@@ -12,6 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
+import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../../features/uistate/mainui';
+import { useAppSelector } from '../../hooks';
 
 function CustomToolbar() {
     const buttonStyle = {
@@ -86,7 +88,7 @@ function CustomToolbar() {
 
  const Chefcentre = () => {
     const { data, isLoading, isError } = useFetchChefCentreQuery();
-
+    const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
   if (isLoading) {
     return (
       <div className="d-flex flex-row justify-content-center">
@@ -127,8 +129,10 @@ function CustomToolbar() {
    title="Liste d'inventaire"
    subItem={'Table de données'} 
    downloadLink='#'
-   isDownloadable={false} />
-      <div className="table-container margin_left card me-5 p-3 shadow">
+   isDownloadable={false}
+   onClickCustom={null} />
+     
+     <div className={`table-container ${margin_left} card me-2 p-3 shadow`}>
         <div style={{ height: '100%' }}>
           <DataGrid
             className="table"

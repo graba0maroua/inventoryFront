@@ -43,46 +43,34 @@ const DashboardChefUnite = () => {
   return (
     <div>
       <SideBar active='dashboard' />
-      <WelcomeComponent
-        page="welcome"
-        title='Dashboard'
-        subItem={'statistics'}
-        downloadLink='#'
-        isDownloadable={false}
-        onClickCustom={null}
-      />
-      <main>
-        <ul className={`box-info  ${margin_left}`} >
+      <WelcomeComponent 
+          page="performance"
+          title='Tableau de bord' 
+          subItem={'statistics'} 
+          downloadLink='#'
+          isDownloadable={false} 
+          onClickCustom={null}
+          />
+       <main>
+          <ul className={`box-info  ${margin_left}`} >
           <li>
-            <i className='bx bx-list-ol '></i>
-            {isLoading ? (
-              <span className="text">
-                <h3>Loading...</h3>
-              </span>
-            ) : isError ? (
-              <span className="text">
-                <h3>Error</h3>
-              </span>
-            ) : (
-              data ? data.map((item) => (
-                <span className="text" key={item.total_count}>
-                  <h3>{item.total_count}</h3>
+            <i className='bx bx-list-ol'></i>
+            <span className="text">
+                  <h3>{data?.total_count}</h3>
                   <p>Total Inventaire</p>
-                </span>
-              )) : null
-            )}
+                  </span>
           </li>
           <li>
             <i className='bx bx-trending-up'></i>
             <span className="text">
-              <h3>2089</h3>
+              <h3>{data?.scanned_count}</h3>
               <p>Inventaire Scannés</p>
             </span>
           </li>
           <li>
             <i className='bx bx-trending-down'></i>
             <span className="text">
-              <h3>12192</h3>
+              <h3>{data?.not_scanned_count}</h3>
               <p>Inventaire Non Scannés</p>
             </span>
           </li>

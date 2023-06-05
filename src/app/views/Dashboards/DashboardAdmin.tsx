@@ -46,8 +46,8 @@ const DashboardAdmin = () => {
         <div>
         <SideBar  active='dashboard' />
           <WelcomeComponent 
-          page="welcome"
-          title='Dashboard' 
+          page="performance"
+          title='Tableau de bord' 
           subItem={'statistics'} 
           downloadLink='#'
           isDownloadable={false} 
