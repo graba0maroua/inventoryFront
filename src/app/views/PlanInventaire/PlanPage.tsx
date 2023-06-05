@@ -21,7 +21,8 @@ import { MainUiState } from '../../../features/uistate/mainui';
 
 
 interface Row {
-  id: number;
+  id: string;
+  grpid:number,
   LOC_ID: string;
   COP_ID: string;
 }
@@ -36,20 +37,23 @@ const PlanPage = () => {
   const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
   // const margin_right = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginRight);
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID Equipe', width: 200, headerAlign: 'center', align: 'center'},
-    { field: 'LOC_ID', headerName: 'ID Localisation', width: 200 , headerAlign: 'center',align: 'center'},
-    { field: 'COP_ID', headerName: 'ID Centre opérationel ID', width: 240 , headerAlign: 'center',align: 'center'},
+    { field: 'id', headerName: 'ID', width: 50, headerAlign: 'center', align: 'center'},
+    { field: 'grpid', headerName: 'ID Equipe', width: 210, headerAlign: 'center', align: 'center',sortable: false},
+    { field: 'LOC_ID', headerName: 'ID Localisation', width: 210 , headerAlign: 'center',align: 'center',sortable: false},
+    { field: 'COP_ID', headerName: 'ID Centre opérationel ID', width: 320 , headerAlign: 'center',align: 'center',sortable: false},
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 150,
+      width: 215,
       headerClassName: 'Action-buttons',
       headerAlign: 'center',
+      align: 'center',
+      sortable: false,
       renderCell: (params) => (
         <>
      
         <Button className="action-button delete-button" size="sm" onClick={(e) => handleDeletePlan({
-          GROUPE_ID:params.row.id,
+          GROUPE_ID:params.row.grpid,
           LOC_ID:params.row.LOC_ID,
           COP_ID:params.row.COP_ID
         })}>
@@ -73,12 +77,13 @@ const PlanPage = () => {
   }
 
   if (isError) {
-    return <div>Error occurred while fetching data.</div>;
+    return <div>Une erreur s'est produite lors de la récupération des données </div>;
   }
 
   const rows: Row[] = data
-    ? data.map((item) => ({
-        id: item.GROUPE_ID,
+    ? data.map((item, index) => ({
+        id: (index + 1).toString(),
+        grpid: item.GROUPE_ID,
         LOC_ID: item.LOC_ID,
         COP_ID: item.COP_ID,
       }))
@@ -95,13 +100,13 @@ const PlanPage = () => {
    isDownloadable={false}
    onClickCustom={null} />
       <div className={`table-container ${margin_left}  card me-2 p-2 shadow`}>
-        <div className="d-flex flex-row my-3">
+        <div className="d-flex flex-row my-3 align-items-center">
           <div className="col-9 me-4">
-            <Form.Control type="text" placeholder="Equipe, localisation ..." onChange={(e)=>{
+            <Form.Control type="text" placeholder="Equipe, localisation , centre ..." onChange={(e)=>{
                 setKeyword(e.target.value)
             }} />
           </div>
-          <div>
+          <div className='align-self-center'>
             <Button className='bg-secondaire' onClick={() => dispatch(show())}>
               <FontAwesomeIcon icon={faAdd} /> Ajouter  plan d'inventaire
             </Button>

@@ -47,32 +47,32 @@ const DashboardChefEquipe = () => {
         <WelcomeComponent 
           page="performance"
           title='Tableau de bord' 
-          subItem={'statistics'} 
+          subItem={'statistiques'} 
           downloadLink='#'
           isDownloadable={false} 
           onClickCustom={null}
           />
-          <main>
+         <main>
           <ul className={`box-info  ${margin_left}`} >
           <li>
             <i className='bx bx-list-ol'></i>
             <span className="text">
                   <h3>{data?.total_count}</h3>
-                  <p>Total Inventaire</p>
+                  <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Le nombre total d'inventaires </p>
                   </span>
           </li>
           <li>
             <i className='bx bx-trending-up'></i>
             <span className="text">
               <h3>{data?.scanned_count}</h3>
-              <p>Inventaire Scannés</p>
+              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Nombre d'inventaires Scannés</p>
             </span>
           </li>
           <li>
             <i className='bx bx-trending-down'></i>
             <span className="text">
               <h3>{data?.not_scanned_count}</h3>
-              <p>Inventaire Non Scannés</p>
+              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Nombre d'inventaires Non Scannés</p>
             </span>
           </li>
         </ul>

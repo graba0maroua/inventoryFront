@@ -11,20 +11,27 @@ import { MainUiState, setMarginLeft, setMarginRight } from '../../features/uista
 import profil from "../../assets/user.png";
 import WelcomeComponent from "./WelComeComponent";
 import Fuse from 'fuse.js';
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 const searchOptions = [
   { label: 'unités' },
   { label: 'Localités' },
   { label: 'Centres' },
+  { label: 'Centres' },
+  { label: 'statistiques' },
+  { label: 'graph' },
+  { label: 'performance' },
   { label: "Liste d'inventaires" },
   { label: 'Tableau de bord' },
   { label: 'Paramètres' },
   { label: "Plan d'inventaires" },
   { label: "profil" },
+  { label: "Localités visitées" },
   //  search options are here
 ];
 
 export default function SideBar({ active }: { active: string }) {
   const [searchValue, setSearchValue] = useState('');
+  const [showLogout, setShowLogout] = useState(false);
   const fuse = new Fuse(searchOptions, {
     keys: ['label'],
     includeScore: true,
@@ -70,6 +77,9 @@ export default function SideBar({ active }: { active: string }) {
           {role === "Chef_centre" && ( window.location.replace('/inventoryList-centre') )};
           {role === "Chef_unité" && ( window.location.replace('/inventoryList-unite') )};
           {role === "Chef_équipe" && ( window.location.replace('/inventoryList-equipe') )};
+           break;
+        case "Localités visitées":
+          {role === "Chef_équipe" && ( window.location.replace('/inventoryList-equipe') )};
         
           break;
         case 'Paramètres':
@@ -79,6 +89,15 @@ export default function SideBar({ active }: { active: string }) {
           window.location.replace('/profil');
           break;
         case 'Tableau de bord':
+          window.location.replace('/home');
+          break;
+        case 'performance':
+          window.location.replace('/home');
+          break;
+        case 'graph':
+          window.location.replace('/home');
+          break;
+        case 'statistiques':
           window.location.replace('/home');
           break;
         // Add more cases based on your search options
@@ -223,7 +242,7 @@ export default function SideBar({ active }: { active: string }) {
             <div className="form-input">
             <input
   type="search"
-  placeholder="Search..."
+  placeholder="Rechercher..."
   value={searchValue}
   onChange={(e) => setSearchValue(e.target.value)}
 />    {/*this is  search */}
@@ -231,7 +250,15 @@ export default function SideBar({ active }: { active: string }) {
             </div>
           </form>
           <a href="#" className="profile">
-            <img src={profil} alt='profile' />
+            <img src={profil} alt='profile' onClick={() => setShowLogout(!showLogout)}/>
+            {showLogout && (
+              <button className="btn btn-light logout-button" onClick={async () => {
+                await logout("");
+                dispatch(signOut());
+              }}>
+                <FontAwesomeIcon icon={faSignOutAlt} /> Déconnexion
+              </button>
+            )}
           </a>
         </nav>
         {/* NAVBAR */}

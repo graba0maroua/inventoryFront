@@ -22,15 +22,14 @@ const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownl
     return(
       
       <section id="content">
-        <Modal show={showUrlModal} onHide={() => dispatch(setShowUrlModal(false))}>
-        
+        <Modal  centered show={showUrlModal} onHide={() => dispatch(setShowUrlModal(false))} >
         <Modal.Body>
           {isLoading &&  ( <Lottie animationData={Annimation} loop={true} /> )}
           {!isLoading &&  ( 
-            <div>
+            <div style={{ fontSize: '20px', fontFamily: 'lato' ,fontWeight :700  ,}}>
               <a  href={backend_server.substring(0,backend_server.length-1)+url} download={true} 
               // ref={refLink}
-              > <FaFilePdf/>Télécharger </a> 
+              > <FaFilePdf className='me-2' />Télécharger  </a> 
             </div>
            )}
 

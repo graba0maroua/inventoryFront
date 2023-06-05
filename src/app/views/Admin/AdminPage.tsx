@@ -178,7 +178,7 @@ const AdminPage = () => {
           </a>
         <form  className='search' action="#">
 				<div className="form-input">
-					<input type="search" placeholder="Search..."/>
+					<input type="search" placeholder="Rechercher..."/>
 					<button type="submit" className="search-btn"><i className='bx bx-search' ></i></button>
 				</div>
 			</form>
@@ -189,7 +189,7 @@ const AdminPage = () => {
                 await logout("");
                 dispatch(signOut());
               }}>
-                <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+                <FontAwesomeIcon icon={faSignOutAlt} /> Déconnexion
               </button>
             )}
           </div>

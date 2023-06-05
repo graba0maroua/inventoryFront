@@ -46,7 +46,7 @@ const DashboardChefUnite = () => {
       <WelcomeComponent 
           page="performance"
           title='Tableau de bord' 
-          subItem={'statistics'} 
+          subItem={'statistiques'} 
           downloadLink='#'
           isDownloadable={false} 
           onClickCustom={null}
@@ -57,21 +57,21 @@ const DashboardChefUnite = () => {
             <i className='bx bx-list-ol'></i>
             <span className="text">
                   <h3>{data?.total_count}</h3>
-                  <p>Total Inventaire</p>
+                  <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Le total d'inventaires </p>
                   </span>
           </li>
           <li>
             <i className='bx bx-trending-up'></i>
             <span className="text">
               <h3>{data?.scanned_count}</h3>
-              <p>Inventaire Scannés</p>
+              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Inventaires Scannés</p>
             </span>
           </li>
           <li>
             <i className='bx bx-trending-down'></i>
             <span className="text">
               <h3>{data?.not_scanned_count}</h3>
-              <p>Inventaire Non Scannés</p>
+              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Inventaires non Scannés</p>
             </span>
           </li>
         </ul>

@@ -12,9 +12,9 @@ import ErrorMessage from '../../../Messages/ErrorMessage';
 
 function AddPlanModal({ refetch }: { refetch: () => void }) {
   const uiState = useAppSelector((state: { planUiSlice: PlanUiState }) => state.planUiSlice);
-  const [groupId, setGroupId] = React.useState(5);
-  const [locId, setLocId] = React.useState('0900L00000010');
-  const [copId, setCopId] = React.useState('0900');
+  const [groupId, setGroupId] = React.useState(0);
+  const [locId, setLocId] = React.useState('');
+  const [copId, setCopId] = React.useState('');
 
   const [storePlan, { isLoading }] = useStorePlanMutation();
 
@@ -34,7 +34,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
         centered
       >
         <Modal.Header className="bg-secondaire" closeButton>
-          <Modal.Title >
+          <Modal.Title style={{ fontSize: '20px', fontFamily: 'lato' ,fontWeight :700  ,}}>
             <FontAwesomeIcon icon={faBarcode} className='me-2' /> Ajouter un nouveau plan d'inventaire
           </Modal.Title>
         </Modal.Header>
@@ -48,7 +48,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       <Form.Label>ID Equipe</Form.Label>
                       <Form.Control
                         type="number"
-                        placeholder="Enter group ID"
+                        placeholder="ex : 5"
                         value={groupId}
                         onChange={(e) => {
                           setGroupId(parseInt(e.target.value));
@@ -59,7 +59,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       <Form.Label>ID Localisation</Form.Label>
                       <Form.Control
                         type="text"
-                        placeholder="Enter location ID"
+                        placeholder="ex : 0900L00000010"
                         value={locId}
                         onChange={(e) => {
                           setLocId(e.target.value);
@@ -70,7 +70,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       <Form.Label>ID Centre opérationel COP</Form.Label>
                       <Form.Control
                         type="text"
-                        placeholder="Enter company ID"
+                        placeholder="ex : 0900"
                         value={copId}
                         onChange={(e) => {
                           setCopId(e.target.value);
@@ -113,13 +113,13 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                 </Modal.Footer>
               </div>
             ) : (
-              <SuccessMessage message="Plan created successfully" />
+              <SuccessMessage message="Plan d'inventaire créé avec succès" />
             )
           ) : (
             <Loader />
           )
         ) : (
-          <ErrorMessage message="Operation failed" />
+          <ErrorMessage message="L'opération a échoué" />
         )}
       </Modal>
     </div>

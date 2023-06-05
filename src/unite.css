@@ -4,6 +4,10 @@
   background-color: #F9F9F9;
   transition: margin-left 0.3s ease
 }
+
+.modal-animation{
+  max-width : 100vh;
+}
 .cards-container {
   display: flex;
   margin-bottom: 5vh;
