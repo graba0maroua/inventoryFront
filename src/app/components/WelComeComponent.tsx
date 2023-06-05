@@ -6,6 +6,7 @@ import { Button, Modal } from "react-bootstrap";
 import { backend_server, baseUrl } from "../constantes/constantes";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from "../../features/uistate/mainui";
+import { FaFilePdf } from "react-icons/fa";
 
 const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownloadable:boolean,downloadLink:string,
     onClickCustom :  (() => Promise<void>) | null }) => {
@@ -29,7 +30,7 @@ const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownl
             <div>
               <a  href={backend_server.substring(0,backend_server.length-1)+url} download={true} 
               // ref={refLink}
-              > Download</a> 
+              > <FaFilePdf/>Télécharger </a> 
             </div>
            )}
 

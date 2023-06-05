@@ -17,8 +17,9 @@ const searchOptions = [
   { label: 'Centres' },
   { label: "Liste d'inventaires" },
   { label: 'Tableau de bord' },
-  { label: 'Settings' },
+  { label: 'Paramètres' },
   { label: "Plan d'inventaires" },
+  { label: "profil" },
   //  search options are here
 ];
 
@@ -71,7 +72,7 @@ export default function SideBar({ active }: { active: string }) {
           {role === "Chef_équipe" && ( window.location.replace('/inventoryList-equipe') )};
         
           break;
-        case 'Settings':
+        case 'Paramètres':
           window.location.replace('/profil');
           break;
         case 'profil':

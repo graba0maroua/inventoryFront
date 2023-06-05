@@ -10,7 +10,9 @@ import SnackBarComponent from "../components/SnackBarComponent"
 import { hideSnackBar, showSnackBar } from "../../features/snack_bar/snack_bar"
 import { FaCheck } from "react-icons/fa"
 import { BsXCircleFill } from "react-icons/bs"
+import { Modal, Button } from "react-bootstrap";
 function LoginPage() {
+  const [showModal, setShowModal] = useState(false);
   const [loginp, setLoginparams] = useState(new loginParams("", ""));
   const [registerParams, setRegisterParams] = useState({
     name: "",
@@ -29,15 +31,30 @@ function LoginPage() {
   const handleModeSwitch = () => {
     setIsSignUpMode(!isSignUpMode);
   };
-
+  const handleSignUpClick = async (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    try {
+      const response = await register(registerParams).unwrap();
+      setShowModal(true); // Show the modal on successful registration
+    } catch (error) {
+      // Handle error if registration fails
+      dispatch(showSnackBar({
+        bgColor: "bg-danger",
+        message: "Erreur champs vide ou incorrect",
+        icon: BsXCircleFill
+      }));
+      setTimeout(() => {
+        dispatch(hideSnackBar());
+      }, 2500);
+    }
+  };
   const [role,setRole] = useState(roles[0])
   return (
     <div className={`container ${isSignUpMode ? "sign-up-mode" : ""}`}>
       <div className="forms-container">
         <div className="signin-signup">
           <form action="#" className="sign-in-form">
-          <SnackBarComponent />
-
+          <SnackBarComponent/>
             <h2 className="title">Connectez vous</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
@@ -100,10 +117,9 @@ function LoginPage() {
    
   
  }} />
-           
-            
           </form>
           <form action="#" className="sign-up-form">
+          <SnackBarComponent />
             <h2 className="title">Crée un compte</h2>
             <div className="col-12 px-5 my-2">
               <i className="fas fa-select"></i>
@@ -221,18 +237,7 @@ function LoginPage() {
   type="submit"
   className="bttn"
   value="S'inscrire"
-  onClick={async (e) => {
-    e.preventDefault();
-    try {
-      const response = await register(registerParams).unwrap();
-      alert("user registered succesefully ");
-    } catch (error) {
-      // Handle error if registration fails
-      console.error(error);
-      alert("Registration failed. Please try again.");
-    }
-  }}
-/>
+  onClick={handleSignUpClick}/>
           </form>
         </div>
       </div>
@@ -262,6 +267,19 @@ function LoginPage() {
           {/* <img src={inv} className="image" alt="" />  */}
         </div>
       </div>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+  <Modal.Header closeButton>
+    <Modal.Title>Vous êtes inscrit avec succès</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    Votre demande de compte sera traitée dans les plus brefs délais, un email vous sera envoyé dès la prise en charge de la réponse.
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={() => setShowModal(false)}>
+      Fermer
+    </Button>
+  </Modal.Footer>
+</Modal>
       </div>
   );
 }
