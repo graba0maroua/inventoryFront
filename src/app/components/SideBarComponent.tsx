@@ -18,7 +18,7 @@ const searchOptions = [
   { label: 'Centres' },
   { label: 'Centres' },
   { label: 'statistiques' },
-  { label: 'graph' },
+  { label: 'graphique diagramme progres' },
   { label: 'performance' },
   { label: "Liste d'inventaires" },
   { label: 'Tableau de bord' },
@@ -26,6 +26,7 @@ const searchOptions = [
   { label: "Plan d'inventaires" },
   { label: "profil" },
   { label: "Localités visitées" },
+  { label: "mot de passe" },
   //  search options are here
 ];
 
@@ -88,13 +89,16 @@ export default function SideBar({ active }: { active: string }) {
         case 'profil':
           window.location.replace('/profil');
           break;
+        case 'mot de passe':
+          window.location.replace('/profil');
+          break;
         case 'Tableau de bord':
           window.location.replace('/home');
           break;
         case 'performance':
           window.location.replace('/home');
           break;
-        case 'graph':
+        case 'graphique diagramme progres':
           window.location.replace('/home');
           break;
         case 'statistiques':

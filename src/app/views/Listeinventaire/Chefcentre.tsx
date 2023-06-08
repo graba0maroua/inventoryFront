@@ -3,7 +3,8 @@ import Home from '../../views/Home';
 import './../../../unite.css';
 import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,GridToolbarFilterButton,GridToolbarExport,
   GridToolbarDensitySelector,
-  gridClasses, } from '@mui/x-data-grid';
+  gridClasses,
+  frFR, } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchChefCentreQuery } from '../../../features/ListeInventaire/ChefCentre';
 import { blueGrey, grey } from '@mui/material/colors';
@@ -58,7 +59,7 @@ function CustomToolbar() {
     { field: 'LOC_ID_INIT', headerName: 'Localisation ID', width: 150, headerClassName: 'boldHeader', sortable: false },
     {
       field: 'status',
-      headerName: 'Status',
+      headerName: 'Statut',
       headerAlign: 'center',
       width: 130,
       headerClassName: 'boldHeader',
@@ -147,7 +148,7 @@ function CustomToolbar() {
                 },
               }}
             pageSizeOptions={[(5), 10, 25,50,100]}
-            localeText={frFRLocalization}
+            localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
             getRowSpacing={(params) => ({
               top: params.isFirstVisible ? 0 : (5),
               bottom: params.isLastVisible ? 0 : (5),

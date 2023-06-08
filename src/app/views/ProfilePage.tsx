@@ -68,10 +68,10 @@ const UserProfilePage: React.FC = () => {
   
   return (
     <main>
-      <SideBar active="settings" />
+      <SideBar active="Paramètres" />
       <WelcomeComponent
         page="Profil"
-        title="Settings"
+        title="Paramètres"
         subItem="Informations"
         downloadLink="#"
         isDownloadable={false}
@@ -110,7 +110,7 @@ const UserProfilePage: React.FC = () => {
                   <hr />
                   Modifier mot de passe
                   <form className="form-group" onSubmit={handleFormSubmit}>
-                    <label htmlFor="oldPassword">Old Password</label>
+                    <label htmlFor="oldPassword">Ancien mot de passe</label>
                     <input
                       type="password"
                       className="form-control"
@@ -118,7 +118,7 @@ const UserProfilePage: React.FC = () => {
                       value={oldPassword}
                       onChange={(e) => setOldPassword(e.target.value)}
                     />
-                    <label htmlFor="newPassword">New Password</label>
+                    <label htmlFor="newPassword">Nouveau mot de passe </label>
                     <input
                       type="password"
                       className="form-control"
@@ -128,7 +128,7 @@ const UserProfilePage: React.FC = () => {
                     />
 
                     <button type="submit" className="btn btn-primary">
-                      Change Password
+                      Modifier mot de passe
                     </button>
                   </form>
                 </div>
@@ -137,6 +137,7 @@ const UserProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
+      
     </main>
   );
 };

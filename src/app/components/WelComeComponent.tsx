@@ -22,7 +22,7 @@ const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownl
     return(
       
       <section id="content">
-        <Modal  centered show={showUrlModal} onHide={() => dispatch(setShowUrlModal(false))} >
+        <Modal  centered show={showUrlModal} onHide={() => dispatch(setShowUrlModal(false))} size='sm' >
         <Modal.Body>
           {isLoading &&  ( <Lottie animationData={Annimation} loop={true} /> )}
           {!isLoading &&  ( 

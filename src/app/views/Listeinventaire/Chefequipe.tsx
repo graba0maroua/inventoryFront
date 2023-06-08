@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Home from '../../views/Home';
 import './../../../unite.css';
-import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarFilterButton, GridToolbarDensitySelector, gridClasses } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarFilterButton, GridToolbarDensitySelector, gridClasses, frFR } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchChefEquipeQuery } from '../../../features/ListeInventaire/ChefEquipe';
 import { useFetchVisitedLocaliteQuery,useFetchNotVisitedLocaliteQuery } from '../../../features/ListeInventaire/LocalitesVisEtNonVisite';
@@ -65,7 +65,7 @@ const columns: GridColDef[] = [
   { field: 'LOC_ID_INIT', headerName: 'Localisation ID', width: 150, headerClassName: 'boldHeader', sortable: false },
   {
     field: 'status',
-    headerName: 'Status',
+    headerName: 'Statut',
     headerAlign: 'center',
     width: 130,
     headerClassName: 'boldHeader',
@@ -194,7 +194,7 @@ const ChefEquipe = () => {
       <BsBuildingFillCheck className='me-2' /> Localités Visitées
     </Modal.Title>
   </Modal.Header>
-  <Modal.Body >
+  <Modal.Body style={{ maxHeight: '66vh', overflowY: 'auto' }}>
     <VisitedLocaliteComponent />
   </Modal.Body>
   <Modal.Footer>
@@ -208,10 +208,10 @@ const ChefEquipe = () => {
       <Modal centered show={showNotVisitedModal} onHide={handleNotVisitedModalClose}>
         <Modal.Header className="bg-secondaire" closeButton>
         <Modal.Title className="text-center" style={{ fontSize: '20px', fontFamily: 'lato' ,fontWeight :700  ,}}>
-        <BsBuildingFillSlash className='me-2' /> Localités Visitées
+        <BsBuildingFillSlash className='me-2' /> Localités non Visitées
     </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ maxHeight: '66vh', overflowY: 'auto' }}>
         <NotVisitedLocaliteComponent />
         </Modal.Body>
         <Modal.Footer>
@@ -238,7 +238,7 @@ const ChefEquipe = () => {
               },
             }}
             pageSizeOptions={[5, 10, 25, 50, 100]}
-            localeText={frFRLocalization}
+            localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
             getRowSpacing={(params) => ({
               top: params.isFirstVisible ? 0 : 5,
               bottom: params.isLastVisible ? 0 : 5,

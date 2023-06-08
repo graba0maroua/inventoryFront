@@ -4,7 +4,8 @@ import './../../../unite.css';
 import './../../../dashboard.css';
 import { DataGrid, GridColDef, GridToolbarColumnsButton, GridToolbarContainer,GridToolbarFilterButton,GridToolbarExport,
   GridToolbarDensitySelector,
-  gridClasses, } from '@mui/x-data-grid';
+  gridClasses,
+  frFR, } from '@mui/x-data-grid';
 import { frFRLocalization } from "../../constantes/constantes";
 import { useFetchInfrastructureUniteQuery ,useGeneratePDFUniteMutation } from '../../../features/infrastructure/infrastructureUnite';
 import { ProgressBar, Spinner } from 'react-bootstrap';
@@ -117,7 +118,7 @@ function CustomToolbar() {
                 },
               }}
             pageSizeOptions={[4, 10, 25,50,100]}
-            localeText={frFRLocalization}
+            localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
             getRowSpacing={(params) => ({
               top: params.isFirstVisible ? 0 : 4,
               bottom: params.isLastVisible ? 0 : 4,

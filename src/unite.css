@@ -44,15 +44,14 @@
   .custom-progress-bar .progress-bar {
     background-color: #546e7a;
   }
-  /* ::-webkit-scrollbar-thumb {
-    background: #50A060;
-} */
+
 .bg-secondaire{
   color: #072645 !important;
   background:  #d8e9fb!important;
   border-color: #d8e9fb!important ;
 
 }
+
 /***************************Liste inventaire etiquettes style***************************/
   .status-badge {
     display: inline-flex;
@@ -122,12 +121,6 @@
     color: #FFF;
     background-color: #f0c768;
   }
-/*   
-  .details-button {
-    border-color: #f1cb73;
-    color: #f1cb73;
-    background-color: #fff3e6;
-  } */
   
   .details-button:hover {
     border-color: #f1cb73;
@@ -139,18 +132,6 @@
     width: 97%;
     margin-left: 20px;
   }
-  .accept-button {
-    background-color: #68A357;
-    color: #ffffff;
-
-  }
-  
-  .refuse-button {
-    background-color: #DB504A;
-    color: #ffffff;
-   
-  }
-  
   
   .logout-button {
     color: #dc3545;
@@ -164,6 +145,14 @@
     width: 100%;
     margin-right: auto;
     margin-left: 0px;
+    padding-right: 0px;
+  }
+  .admin {
+    max-width: 60vh;
+    width: 100%;
+    margin-right: auto;
+    margin-left: 70vh;
+    /* margin-left: 0px; */
     padding-right: 0px;
   }
   
@@ -211,62 +200,52 @@
   filter: brightness(90%);
 }
 
-.edit-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-}
-
-.details-button {
-  background-color: #17a2b8;
-  color: white;
-  border: none;
-}
-
 .delete-button {
   background-color: #dc3545;
   color: white;
   border: none;
-}.actions-container {
+}
+.actions-container {
   display: flex;
   gap: 10px;
 }
 
 .accept-button {
-  background-color: #37C24B;
+  background-color: #43a047;
   color: white;
   border: none;
-  padding: 4px 8px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
-justify-content: center;
-  font-weight: 'bold';
-  font-family:'Lato', sans-serif ;
+  justify-content: center;
+  font-weight: 600;
+  font-family: 'poppins';
 }
 
 .refuse-button {
-  background-color: #cd392f;
+  background-color: #d32f2f;
   color: white;
   border: none;
-  padding: 4px 8px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
-justify-content: center;
-  font-weight: 'bold';
-  font-family:'Lato', sans-serif ;
+  justify-content: center;
+  font-weight: 600;
+  font-family: 'poppins';
 }
 
 .accept-button .icon,
 .refuse-button .icon {
   margin-right: 4px;
+  font-size: 14px;
 }
 
 .accept-button:hover,
@@ -370,4 +349,3 @@ hr {
 .locality-id {
   font-weight: 500;
 }
-

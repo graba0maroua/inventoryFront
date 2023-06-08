@@ -103,6 +103,11 @@ import AdminPage from './app/views/Admin/AdminPage';
               < MyComponent/>
             </PrivateWrapper>   
           }/>
+            <Route path="/settings" element={
+            <PrivateWrapper>
+              < SettingsPage/>
+            </PrivateWrapper>   
+          }/>
           </Routes> 
           </BrowserRouter>
           </Provider>
