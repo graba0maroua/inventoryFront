@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useUpdatePasswordMutation } from "../../features/auth/login";
 import Avatar, { genConfig } from 'react-nice-avatar';
+import avatar from "../../assets/avatar1.png"
 import SideBar from '../components/SideBarComponent';
 import { useFetchUserQuery } from "../../features/auth/user"
 import WelcomeComponent from '../components/WelComeComponent';
@@ -8,8 +9,11 @@ import { MainUiState, setLoadingState, setShowUrlModal, setUrl } from '../../fea
 import { useAppDispatch, useAppSelector } from '../hooks';
 import SnackBarComponent from "../components/SnackBarComponent"
 import { hideSnackBar, showSnackBar } from "../../features/snack_bar/snack_bar"
-import { FaCheck } from "react-icons/fa"
-import { BsXCircleFill } from "react-icons/bs"
+import { FaBuilding, FaCheck, FaEnvelope, FaListUl } from "react-icons/fa"
+import { BsCreditCard2FrontFill, BsFillFileEarmarkPersonFill, BsFillPersonLinesFill, BsPersonBadge, BsPersonFillCheck, BsPersonWorkspace, BsXCircleFill } from "react-icons/bs"
+import { FcInspection ,FcPodiumWithSpeaker} from "react-icons/fc";
+import { Form } from 'react-router-dom';
+
 
 const settingsPage: React.FC = () => {
   const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
@@ -72,100 +76,78 @@ const settingsPage: React.FC = () => {
       <WelcomeComponent
         page="Profil"
         title="Paramètres"
-        subItem="Informations"
+        subItem={`${data?.name}`}
         downloadLink="#"
         isDownloadable={false}
         onClickCustom={null}
       />
       <div className={`containerr ${margin_left}`}>
-        <div className="card shadow">
-          <SnackBarComponent />
-          <div className="card-body">
-            <div className="card-text">
-              <div className="row">
-                <div className="col-lg-4">
-                  <Avatar style={{ width: '8rem', height: '8rem' }} {...config} />
-                  <div className="profile-infoTop">
-                    <strong>{data?.name}</strong>
+      <div className="table-data">
+				<div className="info">
+					<div className="head">
+						<h3>Compte</h3>
+					</div>
+            <img src={avatar} className="image" alt="" /> 
+            <strong>Matricule : {data?.matricule}</strong>
+            crée le : {data?.created_at}
+                <div className='UnderCompte'> <hr/><strong>Modifier mot de passe</strong> 
+                  <form  onSubmit={handleFormSubmit}>
+                    {/* <label htmlFor="oldPassword">Ancien mot de passe</label> */}
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="oldPassword"
+                      placeholder='Ancien mot de passe ...'
+                      value={oldPassword}
+                      onChange={(e) => setOldPassword(e.target.value)}
+                    />
+                    {/* <label htmlFor="newPassword">Nouveau mot de passe </label> */}
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder='Nouveau mot de passe ...'
+                      id="newPassword"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                    <button type="submit" className="btn btn-primary">
+                      Modifier mot de passe
+                    </button>
+                  </form>
                   </div>
-                  <div className="profile-infoTop">
-                    <strong>{data?.role}</strong>
-                  </div>
-                </div>
-                <div className="col-lg-6 mb-4">
-                  <ul className="user-info-list">
-                    <li style={{
-                      width: '100%',
-                      marginBottom: '16px',
-                      background: 'var(--grey)',
-                      borderRadius: '10px',
-                      padding: '14px 20px',
-                      borderLeft: '10px solid var(--blue)',
-                    }}>
-                      <strong>Matricule:</strong> {data?.matricule}
-                    </li>
-                    <li style={{
-                      width: '100%',
-                      marginBottom: '16px',
-                      background: 'var(--grey)',
-                      borderRadius: '10px',
-                      padding: '14px 20px',
-                      borderLeft: '10px solid var(--blue)',
-                    }}>
-                      <strong>Email:</strong> {data?.email}
-                    </li>
-                    <li style={{
-                      width: '100%',
-                      marginBottom: '16px',
-                      background: 'var(--grey)',
-                      borderRadius: '10px',
-                      padding: '14px 20px',
-                      borderLeft: '10px solid var(--blue)',
-                    }}>
-                      <strong>Structure:</strong> {data?.structure}
-                    </li>
-                    <li style={{
-                      width: '100%',
-                      marginBottom: '16px',
-                      background: 'var(--grey)',
-                      borderRadius: '10px',
-                      padding: '14px 20px',
-                      borderLeft: '10px solid var(--blue)',
-                    }}>
-                      <strong>Structure ID:</strong> {data?.structure_id}
-                    </li>
-                  </ul>
-                  <hr />
-                  <div>
-                    Modifier mot de passe
-                    <form className="form-group" onSubmit={handleFormSubmit}>
-                      <label htmlFor="oldPassword">Ancien mot de passe</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        id="oldPassword"
-                        value={oldPassword}
-                        onChange={(e) => setOldPassword(e.target.value)}
-                      />
-                      <label htmlFor="newPassword">Nouveau mot de passe</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        id="newPassword"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                      />
-
-                      <button type="submit" className="btn btn-primary">
-                        Modifier mot de passe
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+				</div>
+        <div className="order">
+					<div className="head">
+						<h3>Informations personelles</h3>
+            <FaListUl></FaListUl>
+					</div>
+          <div className="info">
+          <ul className="info-list">
+						<li className="not-blue">
+            <span><strong>Nom complet : </strong>{data?.name} </span>
+						<BsFillPersonLinesFill></BsFillPersonLinesFill>
+						</li>
+            <li className="blue">
+            <span ><strong>Role :     </strong>   <span>   {data?.role} </span></span>
+						<BsPersonWorkspace></BsPersonWorkspace>
+						</li>
+						<li className="not-blue">
+            <span><strong>Structure : </strong>{data?.structure} </span>
+						<FaBuilding></FaBuilding>
+						</li>
+						<li className="blue">
+            <span><strong>N° Structure : </strong>{data?.structure_id} </span>
+						<BsCreditCard2FrontFill></BsCreditCard2FrontFill>
+						</li>
+            <li className="not-blue">
+            <span><strong>Email : </strong>{data?.email} </span>
+						<FaEnvelope></FaEnvelope>
+						</li>
+          </ul>
+           </div>
+				</div>
+			</div>
+    
       </div>
     </main>
   );
