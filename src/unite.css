@@ -349,3 +349,161 @@ hr {
 .locality-id {
   font-weight: 500;
 }
+/**********************************/
+.table-data {
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 24px;
+	margin-top: 24px;
+	width: 100%;
+	color: var(--dark);
+  margin-bottom: 5vh;
+}
+.table-data > div {
+	border-radius: 20px;
+	background: var(--light);
+	padding: 24px;
+	overflow-x: auto;
+}
+.table-data .head {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}
+.table-data .head h3 {
+	margin-right: auto;
+	font-size: 24px;
+	font-weight: 600;
+}
+.table-data .head .bx {
+	cursor: pointer;
+}
+
+.table-data .order {
+  font-family: 'lato';
+	flex-grow: 1;
+	flex-basis: 500px;
+}
+.table-data .order span strong{
+  font-family: 'poppins';
+	flex-grow: 1;
+	flex-basis: 500px;
+}
+.table-data .order span span {
+  margin-left: 15px;
+	font-size: 13px;
+	padding: 6px 10px;
+	color: var(--light);
+	border-radius: 20px;
+	font-weight: 600;
+  background: var(--blue);
+}
+
+
+
+
+.table-data .info {
+  flex-grow: 1;
+  font-family: 'poppins';
+  flex-basis: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.table-data .info .head {
+  margin-bottom: 16px;
+  text-align: center;
+}
+.table-data .info .image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+.table-data .info strong {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.table-data .UnderCompte {
+  width:100%;
+}
+.table-data button {
+  text-align: center;
+}
+
+.table-data .info .info-list {
+	width: 100%;
+}
+.table-data .info .info-list li {
+	width: 100%;
+	margin-bottom: 16px;
+	background: var(--grey);
+	border-radius: 10px;
+	padding: 14px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.table-data .info .info-list li.blue {
+	border-left: 10px solid var(--blue);
+}
+.table-data .info .info-list li.not-blue {
+	border-left: 10px solid var(--yellow);
+}
+.table-data .info .info-list li:last-child {
+	margin-bottom: 0;
+}
+
+.table-data .info .UnderCompte form{
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.table-data .info .UnderCompte hr {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.table-data .info .UnderCompte strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.table-data .info .UnderCompte label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.table-data .info .UnderCompte input {
+  width: 100%;
+  /* padding: 8px; */
+  border-radius: 6px;
+  border: 3px solid var(--grey);
+  margin-bottom: 7px;
+}
+
+.table-data .info .UnderCompte button {
+  width: fit-content;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  /* border-color: #303f9f;
+  background-color: #303f9f; */
+  border-color: var(--blue); 
+   background-color:var(--blue);
+
+  
+}
