@@ -11,6 +11,7 @@ import { hideSnackBar, showSnackBar } from "../../features/snack_bar/snack_bar"
 import { FaCheck } from "react-icons/fa"
 import { BsXCircleFill } from "react-icons/bs"
 
+
 const UserProfilePage: React.FC = () => {
   const margin_left = useAppSelector((state: { mainUiSlice: MainUiState }) => state.mainUiSlice.marginLeft);
   const config = genConfig();
