@@ -84,13 +84,13 @@ export default function SideBar({ active }: { active: string }) {
         
           break;
         case 'Paramètres':
-          window.location.replace('/profil');
+          window.location.replace('/settings');
           break;
         case 'profil':
-          window.location.replace('/profil');
+          window.location.replace('/settings');
           break;
         case 'mot de passe':
-          window.location.replace('/profil');
+          window.location.replace('/settings');
           break;
         case 'Tableau de bord':
           window.location.replace('/home');
@@ -218,7 +218,7 @@ export default function SideBar({ active }: { active: string }) {
           )}
           <li className={active === "profil" ? "active" : ""}>
             <button className="btn btn-light w-100 ms-1 text-start icon-button" onClick={(e) => {
-              window.location.replace('/profil')
+              window.location.replace('/settings')
             }}>
               <i className="bx bxs-cog"></i>
               {margin_left === "margin_left" && (<span className="text">Paramètres </span>)}
