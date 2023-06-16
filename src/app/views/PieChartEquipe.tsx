@@ -47,8 +47,9 @@ const PieChartEquipe = () => {
 
   return (
     <div>
-      {/* <h2>Pie Chart - Equipe</h2> */}
+  <div className='chart'>
       <Doughnut data={chartData} />
+    </div>
     </div>
   );
 };

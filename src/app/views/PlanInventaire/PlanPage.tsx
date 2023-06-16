@@ -14,6 +14,7 @@ import SideBar from '../../components/SideBarComponent';
 import WelcomeComponent from '../../components/WelComeComponent';
 import { MainUiState } from '../../../features/uistate/mainui';
 import AddPlanModal from './AddPlan';
+import ErrorMessage from '../../../Messages/ErrorMessage';
 
 interface Row {
   id: string;
@@ -84,7 +85,7 @@ const PlanPage = () => {
   }
 
   if (isError) {
-    return <div>Une erreur s'est produite lors de la récupération des données</div>;
+    return <ErrorMessage message="Une erreur s'est produite lors de la récupération des données" />;
   }
 
   const rows: Row[] = data

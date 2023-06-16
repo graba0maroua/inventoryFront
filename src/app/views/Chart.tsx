@@ -22,14 +22,14 @@ const ChartComponent = () => {
           labels: labels,
           datasets: [
             {
-              label: 'Scanned Count',
+              label: 'Inventaire scanné',
               data: scannedCountData,
               borderColor: 'rgb(53, 162, 235)',
               backgroundColor: 'rgba(53, 162, 235, 0.5)',
               fill: false
             },
             {
-              label: 'Not Scanned Count',
+              label: 'Inventaire non scanné',
               data: notScannedCountData,
               borderColor: 'red',
               fill: false
@@ -69,9 +69,9 @@ const ChartComponent = () => {
   }
 
   return(    
-    
+    <div className='chart'>
         <canvas ref={chartRef} />
-      
+        </div>
     );
 };
 

@@ -54,7 +54,7 @@ function CustomToolbar() {
     { field: 'id', headerName: 'ID', width: 30, headerClassName: 'boldHeader', sortable: false },
     { field: 'COP_ID', headerName: 'N°Centre', width: 80, headerClassName: 'boldHeader', sortable: false },
     { field: 'AST_ID', headerName: 'N°inventaire', width: 120, headerClassName: 'boldHeader', sortable: false ,},
-    { field: 'AST_LIB', headerName: 'Asset Libellé', width: 200, headerClassName: 'boldHeader', sortable: false ,},
+    { field: 'AST_LIB', headerName: 'Designation', width: 200, headerClassName: 'boldHeader', sortable: false ,},
     { field: 'code_bar', headerName: 'Code Bar', width: 150, headerClassName: 'boldHeader', sortable: false ,headerAlign: 'center'},
     { field: 'AST_DTE_ACQ', headerName: 'Date Acquisition', width: 100, headerClassName: 'boldHeader', sortable: false },
     { field: 'LOC_ID_INIT', headerName: 'Localisation ID', width: 150, headerClassName: 'boldHeader', sortable: false },

@@ -2,7 +2,6 @@ import { useState } from "react"
 import { loginParams, useFetchInitialRegisterDataQuery, useLoginMutation ,useRegisterMutation} from "../../features/auth/login"
 import { useAppDispatch } from "../hooks"
 import { AuthState, setCredentials } from "../../features/auth/auth-slice"
-import imgL from "../../assets/log2.svg"
 import "./../../App.css"
 import { FormSelect } from "react-bootstrap"
 import { roles } from "../constantes/constantes"
@@ -252,7 +251,6 @@ function LoginPage() {
             s'inscrire
             </button>
           </div>
-          <img src="img/log.svg" className="image" alt="" />
         </div>
         <div className="panel right-panel">
           <div className="content">
@@ -264,7 +262,7 @@ function LoginPage() {
              connexion
             </button>
           </div>
-          {/* <img src={inv} className="image" alt="" />  */}
+ 
         </div>
       </div>
       <Modal show={showModal} onHide={() => setShowModal(false)}>

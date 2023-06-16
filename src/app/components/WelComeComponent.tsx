@@ -29,7 +29,7 @@ const WelcomeComponent = (param:{page:string,title:string,subItem:string,isDownl
             <div style={{ fontSize: '20px', fontFamily: 'lato' ,fontWeight :700  ,}}>
               <a  href={backend_server.substring(0,backend_server.length-1)+url} download={true} 
               // ref={refLink}
-              > <FaFilePdf className='me-2' />Télécharger  </a> 
+              > <FaFilePdf className='me-2' />ouvrir le fichier</a> 
             </div>
            )}
 

@@ -87,7 +87,7 @@ const settingsPage: React.FC = () => {
 					<div className="head">
 						<h3>Compte</h3>
 					</div>
-            <img src={avatar} className="image" alt="" /> 
+            <img src={avatar} className="image" alt="image profil" /> 
             <strong>Matricule : {data?.matricule}</strong>
             crée le : {data?.created_at}
                 <div className='UnderCompte'> <hr/><strong>Modifier mot de passe</strong> 

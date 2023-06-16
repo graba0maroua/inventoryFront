@@ -216,7 +216,7 @@ const ChefEquipe = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleNotVisitedModalClose}>
-            Close
+            Fermer
           </Button>
         </Modal.Footer>
       </Modal>

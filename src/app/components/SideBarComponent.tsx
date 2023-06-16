@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import inv from "../../assets/Asset 1.svg";
+import inv from "../../assets/Asset1.svg";
 import './../../dashboard.css';
 import { useLogoutMutation } from "../../features/auth/login";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -10,6 +10,7 @@ import { Button } from "react-bootstrap";
 import { MainUiState, setMarginLeft, setMarginRight } from '../../features/uistate/mainui'
 import profil from "../../assets/user.png";
 import WelcomeComponent from "./WelComeComponent";
+import avatar from "../../assets/avatar1.png"
 import Fuse from 'fuse.js';
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 const searchOptions = [
@@ -27,6 +28,7 @@ const searchOptions = [
   { label: "profil" },
   { label: "Localités visitées" },
   { label: "mot de passe" },
+  { label: "compte" },
   //  search options are here
 ];
 
@@ -92,6 +94,9 @@ export default function SideBar({ active }: { active: string }) {
         case 'mot de passe':
           window.location.replace('/settings');
           break;
+        case 'compte':
+          window.location.replace('/settings');
+          break;
         case 'Tableau de bord':
           window.location.replace('/home');
           break;
@@ -108,33 +113,32 @@ export default function SideBar({ active }: { active: string }) {
       }
     }
   };
-  useEffect(() => {
-    const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-    allSideMenu.forEach((item) => {
-      item.addEventListener('click', function (event) {
-        event.preventDefault();
-        allSideMenu.forEach((i) => {
-          const li = i.parentElement;
-          if (li) {
-            li.classList.remove('active');
-          }
-        });
-        const li = item.parentElement;
+useEffect(() => {
+  const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+  allSideMenu.forEach((item) => {
+    item.addEventListener('click', (event) => {
+      event.preventDefault();
+      allSideMenu.forEach((i) => {
+        const li = i.parentElement;
         if (li) {
-          li.classList.add('active');
+          li.classList.remove('active');
         }
+      });
+      const li = item.parentElement;
+      if (li) {
+        li.classList.add('active');
+      }
+    });
+  });
 
+  return () => {
+    allSideMenu.forEach((item) => {
+      item.removeEventListener('click', (event) => {
+        event.preventDefault();
       });
     });
-
-    return () => {
-      allSideMenu.forEach((item) => {
-        item.removeEventListener('click', function (event) {
-          event.preventDefault();
-        });
-      });
-    };
-  }, []);
+  };
+}, []);
 
   return (
     <>
@@ -177,7 +181,7 @@ export default function SideBar({ active }: { active: string }) {
               <button className="btn btn-light w-100 ms-1 text-start icon-button" onClick={(e) => {
                 window.location.replace('/inventoryList-equipe')
               }}>
-                <i className="bx bxs-barcode"></i>
+             <i className='bx bx-barcode-reader' ></i>
                 {margin_left === "margin_left" && (<span className="text">Liste d'inventaires</span>)}
               </button>
             </li>
@@ -212,7 +216,7 @@ export default function SideBar({ active }: { active: string }) {
                 window.location.replace('/plan')
               }}>
               <i className='bx bx-list-plus'></i>
-                {margin_left === "margin_left"  && (<span className="text">Plan d'inventaires</span>)}
+                {margin_left === "margin_left"  && (<span className="text">Plan d'inventaire</span>)}
               </button>
             </li>
           )}
@@ -254,7 +258,8 @@ export default function SideBar({ active }: { active: string }) {
             </div>
           </form>
           <a href="#" className="profile">
-            <img src={profil} alt='profile' onClick={() => setShowLogout(!showLogout)}/>
+          <img src={avatar} className="image" alt=""  onClick={() => setShowLogout(!showLogout)} /> 
+            {/* <img src={profil} alt='profile' onClick={() => setShowLogout(!showLogout)}/> */}
             {showLogout && (
               <button className="btn btn-light logout-button" onClick={async () => {
                 await logout("");

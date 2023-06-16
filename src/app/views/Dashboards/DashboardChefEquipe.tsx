@@ -58,30 +58,32 @@ const DashboardChefEquipe = () => {
             <i className='bx bx-list-ol'></i>
             <span className="text">
                   <h3>{data?.total_count}</h3>
-                  <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Le nombre total d'inventaires </p>
+                  <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Nombre total d'inventaire</p>
                   </span>
           </li>
           <li>
             <i className='bx bx-trending-up'></i>
             <span className="text">
               <h3>{data?.scanned_count}</h3>
-              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Nombre d'inventaires Scannés</p>
+              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Nombre d'inventaire Scanné</p>
             </span>
           </li>
           <li>
             <i className='bx bx-trending-down'></i>
             <span className="text">
               <h3>{data?.not_scanned_count}</h3>
-              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Nombre d'inventaires Non Scannés</p>
+              <p style={{  fontFamily: 'lato' ,fontWeight :600  ,}}>Nombre d'inventaire Non Scanné</p>
             </span>
           </li>
         </ul>
       </main>
       <div className="cards-container">
   <div className={`card-table ${margin_left} card me-2 p-2 shadow`}>
+  <h3 className="card-title-lineChart">Graphique linéaire représentant l'inventaire scanné et non scanné par mois</h3>
     <ChartComponent />
   </div>
-  <div className="card-table card me-5 p-3 shadow">
+  <div className="card-table card me-5 p-3 shadow" >
+  <h3 className="card-title">Diagramme circulaire représentant l'inventaire scanné par chaque membre d'équipe</h3>
     <PieChartEquipe/>
   </div>
 </div>
