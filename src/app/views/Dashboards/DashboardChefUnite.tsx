@@ -78,9 +78,11 @@ const DashboardChefUnite = () => {
       </main>
       <div className="cards-container">
   <div className={`card-table ${margin_left} card me-2 p-2 shadow`}>
+  <h3 className="card-title-lineChart">Graphique linéaire représentant l'inventaire scanné et non scanné par mois</h3>
     <ChartComponent />
   </div>
   <div className="card-table card me-5 p-3 shadow">
+  <h3 className="card-title">Diagramme circulaire représentant l'inventaire scanné par chaque centre</h3>
     <PieChartUnite />
   </div>
 </div>

@@ -9,7 +9,7 @@ import AdminPage from './Admin/AdminPage';
 
 const Home = () => {
   const role = useAppSelector((state) => state.auth.role);
- 
+ console.log(role);
 
   return (
     <div>
@@ -17,7 +17,7 @@ const Home = () => {
       {role == 'Chef_unité' &&  <DashboardChefUnite />} 
        {role == 'Chef_centre' &&  <DashboardChefCentre />}
        {role == 'Chef_équipe' &&  <DashboardChefEquipe />}
-      {role == 'Admin' &&  <DashboardChefEquipe />}
+      {role == 'Admin' &&  <DashboardAdmin />}
       </div>
   );
 }

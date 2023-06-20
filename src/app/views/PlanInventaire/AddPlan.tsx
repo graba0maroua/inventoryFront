@@ -45,7 +45,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                 <Modal.Body >
                   <Form >
                     <Form.Group className='w-100'>
-                      <Form.Label>ID Equipe</Form.Label>
+                      <Form.Label>N° Equipe</Form.Label>
                       <Form.Control
                         type="number"
                         placeholder="ex : 5"
@@ -56,7 +56,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       />
                     </Form.Group>
                     <Form.Group className='w-100'>
-                      <Form.Label>ID Localisation</Form.Label>
+                      <Form.Label>N° Localisation</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="ex : 0900L00000010"
@@ -67,7 +67,7 @@ function AddPlanModal({ refetch }: { refetch: () => void }) {
                       />
                     </Form.Group>
                     <Form.Group className='w-100'>
-                      <Form.Label>ID Centre opérationel COP</Form.Label>
+                      <Form.Label>N° Centre opérationel COP</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="ex : 0900"

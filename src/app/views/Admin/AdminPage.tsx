@@ -48,13 +48,15 @@ const AdminPage = () => {
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 50 },
-    { field: 'name', headerName: 'Nom complet', width: 120, },
+    { field: 'name', headerName: 'Nom complet', width: 155, },
     { field: 'created_at', headerName: 'crée le', width:  150,  headerAlign: 'center',},
     { field: 'matricule', headerName: 'Matricule', width: 100,align: 'center',headerAlign: 'center' },
     { field: 'email', headerName: 'Email', width: 100,align: 'center',headerAlign: 'center' },
     {
       field: 'role',
       headerName: 'Role',
+      align: 'center',
+      headerAlign: 'center',
       width: 150,
       renderCell: (params) => {
         const role = params.value as string;
@@ -66,13 +68,17 @@ const AdminPage = () => {
           formattedRole = "Chef d'unité";
         } else if (role === 'Chef_équipe') {
           formattedRole = "Chef d'équipe";
+        } else if (role === 'Admin') {
+          formattedRole = "Admin";
+        } else if (role === 'Chef_équipe') {
+          formattedRole = "Chef d'équipe";
         }
     
         return <div>{formattedRole}</div>;
       },
     },
-    { field: 'structure_id', headerName: 'Structure ID', width: 90 },
-    { field: 'status', headerName: 'Statut', width: 140 ,renderCell: (params) => {
+    { field: 'structure_id', headerName: 'N°structure', width: 90 ,headerAlign: 'center',align: 'center',},
+    { field: 'status', headerName: 'Etat',align: 'center',headerAlign: 'center', width: 140 ,renderCell: (params) => {
       const demande = params.row as DemandeCompte;
       
       let statusBackgroundColor = '';
@@ -98,7 +104,6 @@ const AdminPage = () => {
         default:
           break;
       }
-    
       const statusStyle = {
         backgroundColor: statusBackgroundColor,
         color: statusTextColor,
@@ -121,6 +126,7 @@ const AdminPage = () => {
     {
       field: 'actions',
       headerName: 'Actions',
+      align: 'center',
       width: 250,
       sortable: false,
       headerAlign: 'center',

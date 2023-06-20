@@ -109,7 +109,7 @@ export default function SideBar({ active }: { active: string }) {
         case 'statistiques':
           window.location.replace('/home');
           break;
-        // Add more cases based on your search options
+        // Add more cases based on THE search options
       }
     }
   };
@@ -160,8 +160,8 @@ useEffect(() => {
               <button className="btn btn-light w-100 ms-1 text-start icon-button" onClick={(e) => {
                 window.location.replace('/inventoryList-centre')
               }}>
-                <i className="bx bxs-barcode"></i>
-                {margin_left === "margin_left"  && (<span className="text">Liste d'inventaires</span>)}
+                <i className='bx bx-barcode-reader' ></i>
+                {margin_left === "margin_left"  && (<span className="text">Liste d'inventaire</span>)}
               </button>
             </li>
           )}
@@ -171,8 +171,8 @@ useEffect(() => {
               <button className="btn btn-light w-100 ms-1 text-start icon-button" onClick={(e) => {
                 window.location.replace('/inventoryList-unite')
               }}>
-                <i className="bx bxs-barcode"></i>
-                {margin_left === "margin_left" && (<span className="text">Liste d'inventaires</span>)}
+        <i className='bx bx-barcode-reader' ></i>
+                {margin_left === "margin_left" && (<span className="text">Liste d'inventaire</span>)}
               </button>
             </li>
           )}
@@ -182,7 +182,7 @@ useEffect(() => {
                 window.location.replace('/inventoryList-equipe')
               }}>
              <i className='bx bx-barcode-reader' ></i>
-                {margin_left === "margin_left" && (<span className="text">Liste d'inventaires</span>)}
+                {margin_left === "margin_left" && (<span className="text">Liste d'inventaire</span>)}
               </button>
             </li>
           )}

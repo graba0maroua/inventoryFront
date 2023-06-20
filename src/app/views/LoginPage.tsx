@@ -184,7 +184,7 @@ function LoginPage() {
               <i className="fas fa-user"></i>
               <input
                 type="text"
-                placeholder="Full name"
+                placeholder="Nom et prénom"
                 onChange={(e) =>
                   setRegisterParams((params) => ({
                     ...params,
@@ -197,7 +197,7 @@ function LoginPage() {
               <i className="fas fa-envelope"></i>
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="Email "
                 onChange={(e) =>
                   setRegisterParams((params) => ({
                     ...params,
@@ -223,7 +223,7 @@ function LoginPage() {
               <i className="fas fa-lock"></i>
               <input
                 type="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 onChange={(e) =>
                   setRegisterParams((params) => ({
                     ...params,
