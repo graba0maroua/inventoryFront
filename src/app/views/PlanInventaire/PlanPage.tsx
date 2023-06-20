@@ -35,9 +35,9 @@ const PlanPage = () => {
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 50, headerAlign: 'center', align: 'center' },
-    { field: 'GROUPE_ID', headerName: 'ID Equipe', width: 210, headerAlign: 'center', align: 'center', sortable: false },
-    { field: 'LOC_ID', headerName: 'ID Localisation', width: 210, headerAlign: 'center', align: 'center', sortable: false },
-    { field: 'COP_ID', headerName: 'ID Centre opérationel ID', width: 320, headerAlign: 'center', align: 'center', sortable: false },
+    { field: 'GROUPE_ID', headerName: 'N° Equipe', width: 210, headerAlign: 'center', align: 'center', sortable: false },
+    { field: 'LOC_ID', headerName: 'N° Localisation', width: 210, headerAlign: 'center', align: 'center', sortable: false },
+    { field: 'COP_ID', headerName: 'N°Centre opérationel COP', width: 320, headerAlign: 'center', align: 'center', sortable: false },
     {
       field: 'actions',
       headerName: 'Actions',

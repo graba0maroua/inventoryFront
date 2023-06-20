@@ -5,6 +5,7 @@ interface ChefCentre {
     COP_ID: string;
     code_bar: string;
     AST_LIB: string;
+    AST_ID:string,
     AST_VALBASE: number;
     AST_DTE_ACQ: Date;
     LOC_ID_INIT: string;

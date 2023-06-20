@@ -40,9 +40,9 @@ function CustomToolbar() {
 
 const columns: GridColDef[] = [ 
   { field: 'id', headerName: 'N°Localisation', width: 150, headerClassName: 'boldHeader',sortable: false, },
-  { field: 'nom', headerName: 'Nom localisation', width: 250,headerClassName: 'boldHeader',sortable: false, },
-  { field: 'inventaireScannes', headerName: 'Inventaire scannés', width: 150,headerClassName: 'boldHeader',align: 'center' },
-  { field: 'inventaireNonScannes', headerName: 'Inventaire non scannés', width: 150,headerClassName: 'boldHeader' ,align: 'center'},
+  { field: 'nom', headerName: 'localisation', width: 250,headerClassName: 'boldHeader',sortable: false, },
+  { field: 'inventaireScannes', headerName: 'Inventaire scanné', width: 150,headerClassName: 'boldHeader',align: 'center' },
+  { field: 'inventaireNonScannes', headerName: 'Inventaire non scanné', width: 150,headerClassName: 'boldHeader' ,align: 'center'},
   { field: 'total', headerName: 'Total', width: 100 ,headerClassName: 'boldHeader', headerAlign: 'center',align: 'center'},
   {
     field: 'pourcentage',

@@ -52,17 +52,17 @@ function CustomToolbar() {
   }
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 30, headerClassName: 'boldHeader', sortable: false },
-    { field: 'COP_ID', headerName: 'N°Centre', width: 80, headerClassName: 'boldHeader', sortable: false },
-    { field: 'AST_ID', headerName: 'N°inventaire', width: 120, headerClassName: 'boldHeader', sortable: false ,},
-    { field: 'AST_LIB', headerName: 'Designation', width: 200, headerClassName: 'boldHeader', sortable: false ,},
-    { field: 'code_bar', headerName: 'Code Bar', width: 150, headerClassName: 'boldHeader', sortable: false ,headerAlign: 'center'},
-    { field: 'AST_DTE_ACQ', headerName: 'Date Acquisition', width: 100, headerClassName: 'boldHeader', sortable: false },
-    { field: 'LOC_ID_INIT', headerName: 'Localisation ID', width: 150, headerClassName: 'boldHeader', sortable: false },
+    { field: 'COP_ID', headerName: 'N°Centre', width: 70, headerClassName: 'boldHeader', sortable: false },
+    { field: 'LOC_ID_INIT', headerName: 'N°Localisation', width: 130, headerClassName: 'boldHeader', sortable: false },
+    { field: 'AST_ID', headerName: 'N°inventaire', width: 130, headerClassName: 'boldHeader', sortable: false ,},
+    { field: 'AST_LIB', headerName: 'Designations', width: 200, headerClassName: 'boldHeader', sortable: false ,},
+    { field: 'code_bar', headerName: 'Code bar', width: 150, headerClassName: 'boldHeader', sortable: false ,headerAlign: 'center'},
+    { field: 'AST_DTE_ACQ', headerName: 'Acquis le', width: 100, headerClassName: 'boldHeader', sortable: false },
     {
       field: 'status',
-      headerName: 'Statut',
+      headerName: 'État',
       headerAlign: 'center',
-      width: 130,
+      width: 120,
       headerClassName: 'boldHeader',
       sortable: false,
       renderCell: (params) => {
@@ -84,7 +84,7 @@ function CustomToolbar() {
       },
     },
     { field: 'AST_VALBASE', headerName: 'Valeur', width: 90, headerClassName: 'boldHeader', align: 'center',headerAlign: 'center' },
-    { field: 'LOC_LIB_INIT', headerName: 'Localisation Libellé', width: 100, headerClassName: 'boldHeader', sortable: false },
+    { field: 'LOC_LIB_INIT', headerName: 'Localisation', width: 120, headerClassName: 'boldHeader', sortable: false },
     
   ];
 

@@ -57,17 +57,17 @@ interface Row {
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 30, headerClassName: 'boldHeader', sortable: false },
   { field: 'COP_ID', headerName: 'N°Centre', width: 80, headerClassName: 'boldHeader', sortable: false },
-  { field: 'AST_ID', headerName: 'N°inventaire', width: 120, headerClassName: 'boldHeader', sortable: false },
-  { field: 'code_bar', headerName: 'Code Bar', width: 150, headerClassName: 'boldHeader', sortable: false, headerAlign: 'center' },
-  { field: 'AST_LIB', headerName: 'Asset Libellé', width: 200, headerClassName: 'boldHeader', sortable: false },
+  { field: 'LOC_ID_INIT', headerName: 'N°Localisation', width: 130, headerClassName: 'boldHeader', sortable: false },
+  { field: 'AST_ID', headerName: 'N°inventaire', width: 130, headerClassName: 'boldHeader', sortable: false },
+  { field: 'code_bar', headerName: 'Code bar', width: 150, headerClassName: 'boldHeader', sortable: false, headerAlign: 'center' },
+  { field: 'AST_LIB', headerName: 'Designations', width: 200, headerClassName: 'boldHeader', sortable: false },
   { field: 'AST_VALBASE', headerName: 'Valeur', width: 90, headerClassName: 'boldHeader', align: 'center', headerAlign: 'center' },
-  { field: 'AST_DTE_ACQ', headerName: 'Date Acquisition', width: 100, headerClassName: 'boldHeader', sortable: false },
-  { field: 'LOC_ID_INIT', headerName: 'Localisation ID', width: 150, headerClassName: 'boldHeader', sortable: false },
+  { field: 'AST_DTE_ACQ', headerName: 'Acquis le', width: 100, headerClassName: 'boldHeader', sortable: false },
   {
     field: 'status',
-    headerName: 'Statut',
+    headerName: 'État',
     headerAlign: 'center',
-    width: 130,
+    width: 120,
     headerClassName: 'boldHeader',
     sortable: false,
     renderCell: (params) => {
@@ -88,7 +88,7 @@ const columns: GridColDef[] = [
       }
     },
   },
-  { field: 'LOC_LIB_INIT', headerName: 'Localisation Libellé', width: 100, headerClassName: 'boldHeader', sortable: false },
+  { field: 'LOC_LIB_INIT', headerName: 'Localisation', width: 100, headerClassName: 'boldHeader', sortable: false },
 ];
 
 const ChefEquipe = () => {
@@ -113,25 +113,6 @@ const ChefEquipe = () => {
   const handleNotVisitedModalClose = () => {
     setShowNotVisitedModal(false);
   };
-  // if (isLoading || visitedLoading || notVisitedLoading) {
-  //   return (
-  //     <div className="d-flex flex-row justify-content-center">
-  //       <Loader />
-  //     </div>
-  //   );
-  // }
-
-  // if (isError || visitedError || notVisitedError) {
-  //   return (
-  //     <div className="alert alert-danger" role="alert">
-  //       <h4 className="alert-heading">ERROR</h4>
-  //       <p>An error happened while fetching data</p>
-  //       <hr />
-  //       <p className="mb-0">error</p>
-  //     </div>
-  //   );
-  // }
-
   if (isLoading) {
     return (
       <div className="d-flex flex-row justify-content-center">

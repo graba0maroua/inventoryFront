@@ -42,6 +42,7 @@ function CustomToolbar() {
     id: string;
     code_bar: string;
     AST_LIB: string;
+    AST_ID:string,
     AST_VALBASE: number;
     AST_DTE_ACQ: string;
     LOC_ID_INIT: string;
@@ -50,18 +51,18 @@ function CustomToolbar() {
   }
   
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 80, headerClassName: 'boldHeader', sortable: false },
-    { field: 'copid', headerName: 'N°Centre', width: 80, headerClassName: 'boldHeader', sortable: false },
-    { field: 'code_bar', headerName: 'Code Bar', width: 150, headerClassName: 'boldHeader', sortable: false ,headerAlign: 'center'},
-    { field: 'AST_LIB', headerName: 'Asset Libellé', width: 200, headerClassName: 'boldHeader', sortable: false ,},
-    { field: 'AST_VALBASE', headerName: 'Valeur', width: 90, headerClassName: 'boldHeader', align: 'center',headerAlign: 'center' },
-    { field: 'AST_DTE_ACQ', headerName: 'Date Acquisition', width: 100, headerClassName: 'boldHeader', sortable: false },
-    { field: 'LOC_ID_INIT', headerName: 'Localisation ID', width: 150, headerClassName: 'boldHeader', sortable: false },
+    { field: 'id', headerName: 'ID', width: 50, headerClassName: 'boldHeader', sortable: false },
+    // { field: 'copid', headerName: 'N°Centre', width: 80, headerClassName: 'boldHeader', sortable: false },
+    { field: 'LOC_ID_INIT', headerName: 'N°Localisation', width: 150, headerClassName: 'boldHeader', sortable: false },
+    { field: 'AST_ID', headerName: 'N°inventaire', width: 130, headerClassName: 'boldHeader', sortable: false },
+    { field: 'code_bar', headerName: 'Code bar', width: 150, headerClassName: 'boldHeader', sortable: false ,headerAlign: 'center'},
+    { field: 'AST_LIB', headerName: 'Designations', width: 200, headerClassName: 'boldHeader', sortable: false ,},
+    { field: 'AST_DTE_ACQ', headerName: 'Acquis le', width: 100, headerClassName: 'boldHeader', sortable: false },
     {
       field: 'status',
-      headerName: 'Statut',
+      headerName: 'État',
       headerAlign: 'center',
-      width: 130,
+      width: 120,
       headerClassName: 'boldHeader',
       sortable: false,
       renderCell: (params) => {
@@ -82,7 +83,8 @@ function CustomToolbar() {
         }
       },
     },
-    { field: 'LOC_LIB_INIT', headerName: 'Localisation Libellé', width: 100, headerClassName: 'boldHeader', sortable: false },
+    { field: 'AST_VALBASE', headerName: 'Valeur', width: 90, headerClassName: 'boldHeader', align: 'center',headerAlign: 'center' },
+    { field: 'LOC_LIB_INIT', headerName: 'Localisation', width: 100, headerClassName: 'boldHeader', sortable: false },
     
   ];
 
@@ -111,9 +113,10 @@ function CustomToolbar() {
   const rows: Row[] = data
   ? data.map((item, index) => ({
       id: (index + 1).toString(), // Assign a unique id based on the index
-      copid:  item.COP_ID, // Assign a unique id based on the index
+      // copid:  item.COP_ID, 
       code_bar: item.code_bar,
       AST_LIB: item.AST_LIB,
+      AST_ID: item.AST_ID,
       AST_VALBASE: item.AST_VALBASE,
       AST_DTE_ACQ: item.AST_DTE_ACQ.toString(),
       LOC_ID_INIT: item.LOC_ID_INIT,
